@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 10:51:11 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/21 14:45:20 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME		:= miniRT
 
 CFLAGS		:= -Wall -Wextra -Werror -MMD
 EXTRAFLAGS	:= -MP -g -c
-# -fsanitize=address -g
+# EXTRAFLAGS	+= -fsanitize=address -g
 
-LIBMLX		:= ./MLX42
+LIBMLX		:= MLX42
 MLXFLAGS    := -ldl -lglfw -pthread -lm
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
@@ -26,18 +26,31 @@ MLXFLAGS    := -ldl -lglfw -pthread -lm
 SRC_DIR		:= src
 MAIN_DIR	:= $(SRC_DIR)/main
 PARS_DIR	:= $(SRC_DIR)/parsing
+HOOK_DIR	:= $(SRC_DIR)/hooks
 OBJ_D_DIR	:= O_D_FILES
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 # 	FILES																		#
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
-CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c)
+CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argvcheck.c)
+CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
 
-SRCS	= $(CFILE_MAIN) $(CFILES_PARS)
+SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
 DFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.d))
+
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
+# 	COLOR																		#
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
+
+BOLD	:= \033[1m
+RED		:= \033[0;31m
+GREEN	:= \033[0;32m
+YELLOW	:= \033[0;33m
+BLUE	:= \033[0;34m
+END		:= \033[0m
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 # 	RULES																		#
@@ -47,36 +60,40 @@ all: $(NAME)
 
 $(OBJ_D_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(EXTRAFLAGS) $< -o $@
+	@$(CC) $(CFLAGS) $(EXTRAFLAGS) -I$(LIBMLX)/include/MLX42 $< -o $@
 
-$(LIBMLX)/.git:
-	@echo "\033[1;34mDownloading MLX42...\033[0m"
-	@git clone https://github.com/codam-coding-college/MLX42.git MLX42 > /dev/null 2>&1 
+$(LIBMLX):
+	@echo "$(BLUE)$(BOLD)Downloading $(LIBMLX)...$(END)"
+	@git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX) &>/dev/null
 
-$(NAME): $(LIBMLX)/.git $(OFILES)
-	@make all -C libft
-	@cmake $(LIBMLX) -B $(LIBMLX)/build > /dev/null 2>&1
-	@make all -C $(LIBMLX)/build -j4 > /dev/null 2>&1
-	@cc $(SRCS) libft/libft.a \
-		$(LIBMLX)/build/libmlx42.a $(MLXFLAGS) -I $(LIBMLX)/include -o $(NAME) 
-	@echo "\033[1;32mCREATE PROGRAM: miniRT\033[0m"
+$(NAME): $(LIBMLX) $(OFILES)
+	@make all -sC libft
+	@cmake $(LIBMLX) -B $(LIBMLX)/build &>/dev/null
+	@make all -sC $(LIBMLX)/build -j4 &>/dev/null
+	@cc $(SRCS) libft/libft.a $(LIBMLX)/build/libmlx42.a $(MLXFLAGS) -I$(LIBMLX)/include/MLX42 -o $(NAME) 
+	@echo "$(GREEN)$(BOLD)CREATE PROGRAM: miniRT$(END)"
 
+new:
+	@rm -rf $(OBJ_D_DIR)
+	@rm -f $(NAME)
+	@make
 clean:
-	@echo "\033[1;33mCLEAN miniRT\033[0m"
-	@make fclean -C libft
-	@rm -rf MLX42/build
-	@rm -rf $(OBJ_D_DIR);
+	@echo "$(YELLOW)$(BOLD)CLEAN miniRT$(END)"
+	@make fclean -sC libft
+	@rm -rf $(LIBMLX)/build
+	@rm -rf $(OBJ_D_DIR)
 
 fclean: clean
-	@echo "\033[1;33mREMOVE PROGRAM miniRT\033[0m"
+	@[ -f $(NAME) ] && echo "$(YELLOW)$(BOLD)REMOVE PROGRAM $(NAME)$(END)" || true
 	@rm -f $(NAME)
-	@rm -rf ./MLX42
-	@echo "\033[1;33mMLX42: delete complete folder\033[0m"
+	@[ -d $(LIBMLX) ] && echo "$(YELLOW)$(BOLD)$(LIBMLX): delete complete folder$(END)" || true
+	@rm -rf $(LIBMLX)
 
-re: clean all
+re: fclean all
 
 prep: fclean all
 	@make clean
+	@clear
 
 .SILENT:  $(OFILES) $(DFILES)
 .PHONY: all clean fclean re prep

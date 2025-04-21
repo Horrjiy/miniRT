@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 20:46:28 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/02 15:41:44 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/21 12:08:58 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,11 @@ ISX		= $(addprefix $(ISX_DIR)/, ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigi
 PUTX	= $(addprefix $(PUTX_DIR)/, ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c )
 CPLX	= $(addprefix $(CPLX_DIR)/, ft_atoi.c ft_split.c ft_itoa.c )
 
+OBJ_D_DIR = O_D_FILES
 CFILES	= $(STRING) $(GNL) $(PRINTF) $(MEM) $(ISX) $(PUTX) $(CPLX)
 
-OFILES	= $(CFILES:%.c=OandD_FILES_LIBFT/%.o)
-DFILES	= $(CFILES:%.c=OandD_FILES_LIBFT/%.d)
+OFILES	= $(CFILES:%.c=$(OBJ_D_DIR)/%.o)
+DFILES	= $(CFILES:%.c=$(OBJ_D_DIR)/%.d)
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 # 	Directories																	#
@@ -49,20 +50,17 @@ CPLX_DIR	:= complex
 
 all: $(NAME)
 
-OandD_FILES_LIBFT/%.o: %.c
+$(OBJ_D_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -MMD -MP -g -c $< -o $@
 
 $(NAME): $(OFILES)
-	@echo "\033[1;32mlibft: create libft.a\033[0m"
 	@ar rcs $(NAME) $(OFILES)
 
 clean:
-	@echo "\033[1;33mlibft: rm .o files\033[0m"
-	@ [ -d OandD_FILES_LIBFT ] && rm -rf OandD_FILES_LIBFT || true
+	@ [ -d $(OBJ_D_DIR) ] && rm -rf $(OBJ_D_DIR) || true
 
 fclean: clean
-	@echo "\033[1;33mlibft: remove libft.a\033[0m"
 	@rm -f $(NAME)
 	
 
