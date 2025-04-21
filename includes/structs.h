@@ -6,14 +6,14 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/21 15:09:26 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:14:16 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-#include "minirt.h"
+# include "minirt.h"
 // ~-~-~-~-~-~-~  Definitions and structs  ~-~-~-~-~-~-~ //
 
 typedef struct s_coord
@@ -21,7 +21,7 @@ typedef struct s_coord
 	double			x;
 	double			y;
 	double			z;
-}					t_coords;
+} t_coords,	t_vect;
 
 typedef struct s_rgb
 {
