@@ -6,9 +6,18 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/18 17:36:33 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/21 14:56:04 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+void	ft_normalize_vector(t_coords *vec)
+{
+	double magnitude;
+
+	magnitude = sqrt(pow(vec->x, 2) + pow(vec->y, 2) + pow(vec->z, 2));
+	vec->x /= magnitude;
+	vec->y /= magnitude;
+	vec->z /= magnitude;
+}

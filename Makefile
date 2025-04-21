@@ -6,7 +6,7 @@
 #    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 10:51:11 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/21 14:49:29 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ_D_DIR	:= O_D_FILES
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c)
-CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argvcheck.c)
+CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argvcheck.c argconvert.c)
 
 SRCS	= $(CFILE_MAIN) $(CFILES_PARS)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
