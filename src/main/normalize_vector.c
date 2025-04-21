@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argvcheck.c                                        :+:      :+:    :+:   */
+/*   normalize_vector.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 16:35:55 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 10:51:52 by mpoplow          ###   ########.fr       */
+/*   Created: 2025/04/21 16:25:54 by mpoplow           #+#    #+#             */
+/*   Updated: 2025/04/21 16:26:06 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool ft_argvcheck(int argc, char **argv)
+void	ft_normalize_vector(t_coords *vec)
 {
-	if(argc != 2)
-		return(false);
-	(void)argv;
-	return(true);
+	double magnitude;
+
+	magnitude = sqrt(pow(vec->x, 2) + pow(vec->y, 2) + pow(vec->z, 2));
+	vec->x /= magnitude;
+	vec->y /= magnitude;
+	vec->z /= magnitude;
 }

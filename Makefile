@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 15:01:39 by tleister         ###   ########.fr        #
+#    Updated: 2025/04/21 16:25:08 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJ_D_DIR	:= O_D_FILES
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c ft_init.c)
-CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argvcheck.c argconvert.c)
+CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
 
 SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK)

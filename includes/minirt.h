@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 15:03:40 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:18:38 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 // ~-~-~-~-~-~-~  Includes  ~-~-~-~-~-~-~ //
 
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
-# include "MLX42.h"
+# include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -123,10 +124,11 @@ typedef struct s_all
 
 // ~-~-~-~-~-~-~  Functions  ~-~-~-~-~-~-~ //
 
-bool				ft_argvcheck(int argc, char **argv);
+// ----- Parsing ----- //
+void				ft_normalize_vector(t_coords *vec);
+
+
 bool				ft_init(t_data *data);
 void				keyfunc(mlx_key_data_t keydata, void *param);
-bool				ft_argvcheck(int argc, char **argv);
-void				ft_normalize_vector(t_coords *vec);
 
 #endif
