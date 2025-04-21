@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 14:51:41 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/21 15:03:40 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 
 // ~-~-~-~-~-~-~  Includes  ~-~-~-~-~-~-~ //
 
-# include <stdbool.h>
-# include <unistd.h>
+# include "../libft/libft.h"
+# include "MLX42.h"
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
+# include <unistd.h>
+
+# define WIDTH 1500
+# define HEIGTH 900
+
+# define WIDTH 1500
+# define HEIGTH 900
 
 // ~-~-~-~-~-~-~  Definitions and structs  ~-~-~-~-~-~-~ //
 
@@ -38,6 +46,11 @@ typedef struct s_rgb
 
 // ~-~-~-~-~-~-~ Scene elements ~-~-~-~-~-~-~ //
 
+typedef struct s_data
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+}					t_data;
 typedef struct s_ambient
 {
 	double			amb_light;
@@ -110,6 +123,9 @@ typedef struct s_all
 
 // ~-~-~-~-~-~-~  Functions  ~-~-~-~-~-~-~ //
 
+bool				ft_argvcheck(int argc, char **argv);
+bool				ft_init(t_data *data);
+void				keyfunc(mlx_key_data_t keydata, void *param);
 bool				ft_argvcheck(int argc, char **argv);
 void				ft_normalize_vector(t_coords *vec);
 

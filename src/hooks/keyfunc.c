@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_minirt.c                                      :+:      :+:    :+:   */
+/*   keyfunc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 15:03:57 by tleister         ###   ########.fr       */
+/*   Created: 2025/04/21 14:38:14 by tleister          #+#    #+#             */
+/*   Updated: 2025/04/21 14:41:33 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
-int	main(int argc, char *argv[])
+void	keyfunc(mlx_key_data_t keydata, void *param)
 {
-	t_data	data;
+	t_data	*data;
 
-	if (ft_argvcheck(argc, argv) == false)
-		return (write(2, "Specify the path to a valid .rt file.\n", 38), 1);
-	if (!ft_init(&data))
-		return (ft_putstr_fd("Error", 2), 1);
-	mlx_key_hook(data.mlx, keyfunc, &data);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	data = (t_data *)param;
+	if (keydata.key == MLX_KEY_ESCAPE)
+		mlx_close_window(data->mlx);
 }
