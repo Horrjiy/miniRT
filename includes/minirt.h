@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 17:23:08 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:08:45 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define WIDTH 1500
-# define HEIGTH 900
+# define W_WIDTH 1500
+# define W_HEIGTH 900
+# define V_WIDTH 2
+# define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
 # define MOVE_SPEED 1.5
 
@@ -44,7 +46,7 @@ void	keyfunc(mlx_key_data_t keydata, void *param);
 t_vect	ft_vectadd(t_vect v1, t_vect v2);
 t_vect	ft_vectsub(t_vect v1, t_vect v2);
 t_vect	ft_vectmult(t_vect v1, double num);
-t_vect	ft_vectmult2(t_vect v1, t_vect v2);
+t_vect	ft_vectcross(t_vect v1, t_vect v2);
 t_vect	ft_vectdiv(t_vect v1, double num);
 double	ft_vectmag(t_vect v1);
 t_vect	ft_vectnorm(t_vect v1);

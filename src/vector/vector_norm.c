@@ -6,17 +6,17 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:41:08 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 17:23:08 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:53:17 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-t_vect	ft_vectmult2(t_vect v1, t_vect v2)
+t_vect	ft_vectcross(t_vect v1, t_vect v2)
 {
-	v1.x *= v2.x;
-	v1.y *= v2.y;
-	v1.z *= v2.z;
+	v1.x = v1.y * v2.z - v1.z * v2.y;
+	v1.y = v1.z * v2.x - v1.x * v2.z;
+	v1.z = v1.x * v2.y - v1.y * v2.x;
 	return (v1);
 }
 
