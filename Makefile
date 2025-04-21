@@ -6,7 +6,7 @@
 #    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 16:25:08 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/21 16:45:51 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_DIR		:= src
 MAIN_DIR	:= $(SRC_DIR)/main
 PARS_DIR	:= $(SRC_DIR)/parsing
 HOOK_DIR	:= $(SRC_DIR)/hooks
+VEC_DIR		:= $(SRC_DIR)/vector
 OBJ_D_DIR	:= O_D_FILES
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
@@ -36,6 +37,7 @@ OBJ_D_DIR	:= O_D_FILES
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
+CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c)
 
 SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
