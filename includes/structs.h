@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/21 16:36:37 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/22 14:15:57 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 
-// ~-~-~-~-~-~-~  Coords and colors  ~-~-~-~-~-~-~ //
+// ~-~-~-~-~-~-~  coords and colors  ~-~-~-~-~-~-~ //
 
 typedef struct s_coord
 {
@@ -31,7 +31,7 @@ typedef struct s_rgb
 	unsigned char			b;
 }							t_rgbcolor;
 
-// ~-~-~-~-~-~-~ Scene elements ~-~-~-~-~-~-~ //
+// ~-~-~-~-~-~-~ scene elements ~-~-~-~-~-~-~ //
 
 typedef struct s_ambient
 {
@@ -77,6 +77,8 @@ typedef struct s_cylinder
 	t_rgbcolor				rgb;
 }							t_cy;
 
+// ~-~-~-~-~-~-~ management ~-~-~-~-~-~-~ //
+
 typedef enum e_status
 {
 	sphere,
@@ -104,7 +106,10 @@ typedef struct s_data
 	t_c						cam;
 	t_a						amb;
 	t_l						light;
+	int						all_surroundings[3];
 	int						fd;
+	char					*temp;
+	char					**scene;
 }							t_data;
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 20:46:28 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 12:08:58 by tleister         ###   ########.fr        #
+#    Updated: 2025/04/21 20:18:52 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ GNL		= $(addprefix $(GNL_DIR)/, get_next_line.c get_next_line_utils.c get_next_t
 PRINTF	= $(addprefix $(PRINTF_DIR)/, ft_pf_putstrchar_sc_perc.c ft_pf_putnbr_di.c ft_pf_putunbr_u.c ft_pf_puthex_lowx.c ft_pf_puthex_capx.c ft_pf_puthexaddress_p.c ft_printf.c )
 STRING	= $(addprefix $(STRING_DIR)/, ft_strjoin_free.c ft_strjoin.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strnstr.c ft_strlen.c ft_strmapi.c ft_striteri.c ft_substr.c ft_strdup.c ft_strstrdup.c)
 MEM		= $(addprefix $(MEM_DIR)/, ft_bzero.c ft_calloc.c ft_memset.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c )
-ISX		= $(addprefix $(ISX_DIR)/, ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_toupper.c ft_tolower.c )
+ISX		= $(addprefix $(ISX_DIR)/, ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_iswhtspc.c ft_isprint.c ft_toupper.c ft_tolower.c )
 PUTX	= $(addprefix $(PUTX_DIR)/, ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c )
 CPLX	= $(addprefix $(CPLX_DIR)/, ft_atoi.c ft_split.c ft_itoa.c )
 
