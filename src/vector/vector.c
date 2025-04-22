@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vetor.c                                            :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:11:58 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/21 16:41:40 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:06:58 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vect	ft_vectdiv(t_vect v1, double num)
 	return (v1);
 }
 
-void	ft_vectprint(t_vect v1)
+void	ft_vectprint(char *str, t_vect v1)
 {
-	printf("x: %g, y: %g, z: %g\n", v1.x, v1.y, v1.z);
+	printf("%s:	x: %g, y: %g, z: %g\n", str, v1.x, v1.y, v1.z);
 }
