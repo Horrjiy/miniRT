@@ -6,7 +6,7 @@
 #    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/21 19:12:44 by tleister         ###   ########.fr        #
+#    Updated: 2025/04/22 11:53:22 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ MAIN_DIR	:= $(SRC_DIR)/main
 PARS_DIR	:= $(SRC_DIR)/parsing
 HOOK_DIR	:= $(SRC_DIR)/hooks
 VEC_DIR		:= $(SRC_DIR)/vector
+RAY_DIR		:= $(SRC_DIR)/ray
 OBJ_D_DIR	:= O_D_FILES
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
@@ -38,8 +39,9 @@ CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c)
+CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)
 
-SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC)
+SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
 DFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.d))
 

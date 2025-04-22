@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/21 16:36:37 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/22 17:48:04 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ typedef enum e_status
 {
 	sphere,
 	plane,
-	cylinder
+	cylinder,
+	shape_amount
 }							t_status;
 
 typedef struct s_scene_objects
@@ -95,6 +96,15 @@ typedef struct s_scene_objects
 		t_cy				cylinder;
 	};
 }							t_obj;
+
+typedef struct s_hitpoint
+{
+	t_obj					*obj;
+	t_rgbcolor				col;
+	t_coords				point;
+	double					dist;
+	double					t;
+}							t_hit;
 
 typedef struct s_data
 {

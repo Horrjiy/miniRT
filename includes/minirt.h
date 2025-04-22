@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 19:08:45 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:47:01 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define W_WIDTH 1500
-# define W_HEIGTH 900
+// # define W_WIDTH 1500
+// # define W_HEIGTH 900
+# define W_WIDTH 600
+# define W_HEIGTH 500
 # define V_WIDTH 2
-# define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
+// # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
+# define V_HEIGTH 1.666666666666666666666 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
 # define MOVE_SPEED 1.5
 
@@ -51,6 +54,7 @@ t_vect	ft_vectdiv(t_vect v1, double num);
 double	ft_vectmag(t_vect v1);
 t_vect	ft_vectnorm(t_vect v1);
 t_vect	ft_vectrot(t_vect v1, double angle, char axis);
-void	ft_vectprint(t_vect v1);
+void	ft_vectprint(char *str, t_vect v1);
+double	ft_vectdot(t_vect v1, t_vect v2);
 
 #endif
