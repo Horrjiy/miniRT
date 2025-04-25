@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 12:58:50 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 18:08:18 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	freearr(char **strarr)
 
 void	free_data(t_data *data)
 {
-	if (data->fd > 2)
-		close(data->fd);
 	if (data->str)
 		free(data->str);
 	if (data->scene)

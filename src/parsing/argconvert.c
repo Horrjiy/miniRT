@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 17:47:19 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 18:10:50 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	init_identifier(t_data *data, char **scene)
 	i = 0;
 	while (scene[i])
 	{
-		printf("Regen: %s\n", scene[i]);
 		if (scene[i][0] == 'A' && ft_iswhtspc(scene[i][1]))
 			init_ambient(data, scene[i]);
 		else if (scene[i][0] == 'C' && ft_iswhtspc(scene[i][1]))
@@ -43,13 +42,13 @@ static void	init_identifier(t_data *data, char **scene)
 	}
 }
 
-void	ft_analyze(t_data *data)
+void	ft_analyze(t_data *data, int fd)
 {
 	data->objects = NULL;
 	data->all_surrnd[0] = 0;
 	data->all_surrnd[1] = 0;
 	data->all_surrnd[2] = 0;
-	data->str = get_next_text(data->fd);
+	data->str = get_next_text(fd);
 	if (!data->str)
 		return (ft_parserr(data, 201));
 	data->scene = ft_split(data->str, '\n');
@@ -62,6 +61,7 @@ void	ft_analyze(t_data *data)
 		return (ft_parserr(data, 203));
 }
 
+// printf("Regen: %s\n", scene[i]);
 // printf("A: %g - rgb: %u %u %u\n", data->amb.amb_light, data->amb.rgb.r, data->amb.rgb.g, data->amb.rgb.b);
 // printf("C: pos: %g %g %g - vec: %g %g %g - fov: %g\n", data->cam.pos.x, data->cam.pos.y, data->cam.pos.z, data->cam.vec.x, data->cam.vec.y, data->cam.vec.z, data->cam.fov);
 // printf("L: pos: %g %g %g - br: %g - rgb: %u %u %u\n", data->light.pos.x, data->light.pos.y, data->light.pos.z, data->light.bright, data->light.rgb.r, data->light.rgb.g, data->light.rgb.b);

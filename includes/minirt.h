@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 15:36:08 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 18:08:55 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.666666666666666666666 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
-# define MOVE_SPEED 1.5
+# define MOVE_SPEED 0.5
+# define DIST 3
 
 # define PI 3.14159265358979323846264338327950288
 # define PI_2 1.57079632679489661923132169163975144
@@ -45,7 +46,7 @@
 
 // ----- parsing ----- //
 
-void			ft_analyze(t_data *data);
+void			ft_analyze(t_data *data, int fd);
 void			init_ambient(t_data *data, char *line);
 void			init_light(t_data *data, char *line);
 void			init_camera(t_data *data, char *line);
@@ -61,8 +62,18 @@ double			ft_convert_double(t_data *data);
 t_rgb			ft_convert_rgb(t_data *data);
 t_coords		ft_convert_coords(t_data *data);
 
-bool			ft_init(t_data *data);
-void			keyfunc(mlx_key_data_t keydata, void *param);
+// ----- rendering ----- //
+
+// goes througth all pixels of the window and sets them correctly
+void	ft_render(t_data *data);
+
+bool	ft_init(t_data *data);
+// checks for movement keys and sets vaues accordingly
+void	ft_keyfunc(void *param);
+// resizes the image if the window is resized
+void	ft_resizefunc(int32_t width, int32_t height, void *param);
+// closes the window if esc is pressed
+void	esc(mlx_key_data_t keydata, void *param);
 
 // ----- Vector functions ----- //
 
@@ -73,6 +84,10 @@ t_vect			ft_vectcross(t_vect v1, t_vect v2);
 t_vect			ft_vectdiv(t_vect v1, double num);
 double			ft_vectmag(t_vect v1);
 t_vect			ft_vectnorm(t_vect v1);
+// rotates a vector around an axis
+// @param v1 the vector
+// @param angle the rotation angle in radiant
+// @param axis the x, y or z axis
 void			ft_vectnorm2(t_coords *vec);
 t_vect			ft_vectrot(t_vect v1, double angle, char axis);
 void			ft_vectprint(char *str, t_vect v1);

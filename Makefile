@@ -6,15 +6,15 @@
 #    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/25 16:56:40 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/25 18:10:00 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= miniRT
 
-CFLAGS		:= -Wall -Wextra -Werror -g
-EXTRAFLAGS	:= -MMD -MP -g -c
+CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -fsanitize=address -g
+EXTRAFLAGS	:= -MMD -MP -g -c
 
 LIBMLX		:= MLX42
 MLXFLAGS    := -ldl -lglfw -pthread -lm
@@ -38,7 +38,7 @@ OBJ_D_DIR	:= O_D_FILES
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c ft_atox.c ft_comlen.c convert.c shapes.c surrounding.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
-CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c)
+CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector2.c vector_norm.c)
 CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)
 
 SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY)
@@ -60,7 +60,7 @@ END		:= \033[0m
 # 	RULES																		#
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
-all: $(NAME)
+all: $(NAME) 
 
 $(OBJ_D_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
