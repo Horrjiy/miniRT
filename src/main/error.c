@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 14:50:11 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 17:33:32 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ void ft_parserr(t_data *data, int exnum)
 	if(exnum < 133)
 		wr_err(strerror(exnum));
 	else if(exnum == 201)
-		wr_err("Couldn't read from file");
+		wr_err("Couldn't read from file\n");
 	else if(exnum == 202)
-		wr_err("Invalid identifier");
+		wr_err("Invalid identifier\n");
 	else if(exnum == 203)
-		wr_err("Identifier C, L, A must appear exactly once");
+		wr_err("Identifier C, L, A must appear exactly once\n");
+	else if(exnum == 204)
+		wr_err("Forbidden characters or format in an element\n");
+	else if(exnum == 205)
+		wr_err("Number out of range\n");
+	else if(exnum == 206)
+		wr_err("Directon vector can't have magnitute 0\n");
 	exit(exnum);
 }

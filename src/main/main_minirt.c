@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 17:45:03 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 16:33:47 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char *argv[])
 	data.fd = ft_argvcheck(argc, argv);
 	if (data.fd == -1)
 		return (wr_err("Specify the path to a valid .rt file.\n"), 1);
+	ft_analyze(&data);
 	if (!ft_init(&data))
 		return (ft_putstr_fd("Error", 2), 1);
 	mlx_key_hook(data.mlx, keyfunc, &data);

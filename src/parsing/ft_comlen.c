@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_comlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 12:58:50 by mpoplow          ###   ########.fr       */
+/*   Created: 2025/04/25 14:36:29 by mpoplow           #+#    #+#             */
+/*   Updated: 2025/04/25 14:38:17 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	freearr(char **strarr)
+size_t	ft_comlen(const char *s)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (strarr[i])
-	{
-		free(strarr[i]);
-		i++;
-	}
-	free(strarr);
-}
-
-void	free_data(t_data *data)
-{
-	if (data->fd > 2)
-		close(data->fd);
-	if (data->str)
-		free(data->str);
-	if (data->scene)
-		freearr(data->scene);
+	len = 0;
+	if (s == NULL)
+		return (0);
+	while (s[len] && s[len] != ',')
+		len++;
+	return (len);
 }

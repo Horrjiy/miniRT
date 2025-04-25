@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/22 17:56:43 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:15:55 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-uint32_t	ft_rgba(t_rgbcolor col)
+uint32_t	ft_rgba(t_rgb col)
 {
 	return (col.r << 24 | col.g << 16 | col.b << 8 | 0xff);
 }

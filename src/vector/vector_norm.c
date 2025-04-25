@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_norm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:41:08 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 12:35:42 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:28:03 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

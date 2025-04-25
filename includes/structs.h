@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/22 18:03:08 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 15:15:02 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ typedef struct s_coord
 	double					z;
 } t_coords, t_vect;
 
-typedef struct s_rgb
+typedef struct s_rgbcolor
 {
 	unsigned char			r;
 	unsigned char			g;
 	unsigned char			b;
-}							t_rgbcolor;
+}							t_rgb;
 
 // ~-~-~-~-~-~-~ scene elements ~-~-~-~-~-~-~ //
 
 typedef struct s_ambient
 {
 	double					amb_light;
-	t_rgbcolor				rgb;
+	t_rgb					rgb;
 
 }							t_a;
 
@@ -44,28 +44,28 @@ typedef struct s_camera
 {
 	t_coords				pos;
 	t_coords				vec;
-	int						fov;
+	double					fov;
 }							t_c;
 
 typedef struct s_light
 {
 	t_coords				pos;
 	double					bright;
-	t_rgbcolor				rgb;
+	t_rgb					rgb;
 }							t_l;
 
 typedef struct s_sphere
 {
 	t_coords				pos;
 	double					dia;
-	t_rgbcolor				rgb;
+	t_rgb					rgb;
 }							t_sp;
 
 typedef struct s_plane
 {
 	t_coords				pos;
 	t_coords				nvec;
-	t_rgbcolor				rgb;
+	t_rgb					rgb;
 }							t_pl;
 
 typedef struct s_cylinder
@@ -74,7 +74,7 @@ typedef struct s_cylinder
 	t_coords				vec;
 	double					dia;
 	double					h;
-	t_rgbcolor				rgb;
+	t_rgb					rgb;
 }							t_cy;
 
 // ~-~-~-~-~-~-~ management ~-~-~-~-~-~-~ //
@@ -102,7 +102,7 @@ typedef struct s_scene_objects
 typedef struct s_hitpoint
 {
 	t_obj					*obj;
-	t_rgbcolor				col;
+	t_rgb					col;
 	t_coords				point;
 	double					dist;
 	double					t;
@@ -116,9 +116,9 @@ typedef struct s_data
 	t_c						cam;
 	t_a						amb;
 	t_l						light;
-	int						all_surroundings[3];
+	int						all_surrnd[3];
 	int						fd;
-	char					*temp;
+	char					*str;
 	char					**scene;
 }							t_data;
 

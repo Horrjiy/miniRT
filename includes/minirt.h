@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 18:05:45 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 15:36:08 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,36 +45,44 @@
 
 // ----- parsing ----- //
 
-void	ft_analyze(t_data *data);
-void	init_ambient(t_data *data, char *line);
-void	init_light(t_data *data, char *line);
-void	init_camera(t_data *data, char *line);
-void	init_sphere(t_data *data, char *line);
-void	init_plane(t_data *data, char *line);
-void	init_cylinder(t_data *data, char *line);
-double	ft_atodb(char *str);
+void			ft_analyze(t_data *data);
+void			init_ambient(t_data *data, char *line);
+void			init_light(t_data *data, char *line);
+void			init_camera(t_data *data, char *line);
+void			init_sphere(t_data *data, char *line);
+void			init_plane(t_data *data, char *line);
+void			init_cylinder(t_data *data, char *line);
+double			ft_atodb(char *str);
+int				ft_safe_atoi(char *str, t_data *data);
+unsigned char	ft_safe_atouc(char *str, t_data *data);
+size_t			ft_comlen(const char *s);
 
-bool	ft_init(t_data *data);
-void	keyfunc(mlx_key_data_t keydata, void *param);
+double			ft_convert_double(t_data *data);
+t_rgb			ft_convert_rgb(t_data *data);
+t_coords		ft_convert_coords(t_data *data);
+
+bool			ft_init(t_data *data);
+void			keyfunc(mlx_key_data_t keydata, void *param);
 
 // ----- Vector functions ----- //
 
-t_vect	ft_vectadd(t_vect v1, t_vect v2);
-t_vect	ft_vectsub(t_vect v1, t_vect v2);
-t_vect	ft_vectmult(t_vect v1, double num);
-t_vect	ft_vectcross(t_vect v1, t_vect v2);
-t_vect	ft_vectdiv(t_vect v1, double num);
-double	ft_vectmag(t_vect v1);
-t_vect	ft_vectnorm(t_vect v1);
-t_vect	ft_vectrot(t_vect v1, double angle, char axis);
-void	ft_vectprint(char *str, t_vect v1);
-double	ft_vectdot(t_vect v1, t_vect v2);
+t_vect			ft_vectadd(t_vect v1, t_vect v2);
+t_vect			ft_vectsub(t_vect v1, t_vect v2);
+t_vect			ft_vectmult(t_vect v1, double num);
+t_vect			ft_vectcross(t_vect v1, t_vect v2);
+t_vect			ft_vectdiv(t_vect v1, double num);
+double			ft_vectmag(t_vect v1);
+t_vect			ft_vectnorm(t_vect v1);
+void			ft_vectnorm2(t_coords *vec);
+t_vect			ft_vectrot(t_vect v1, double angle, char axis);
+void			ft_vectprint(char *str, t_vect v1);
+double			ft_vectdot(t_vect v1, t_vect v2);
 
 // ----- free & error ----- //
 
-void	freearr(char **strarr);
-void	free_data(t_data *data);
-void	ft_parserr(t_data *data, int exnum);
-void	wr_err(char *msg);
+void			freearr(char **strarr);
+void			free_data(t_data *data);
+void			ft_parserr(t_data *data, int exnum);
+void			wr_err(char *msg);
 
 #endif
