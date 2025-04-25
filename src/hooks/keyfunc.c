@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:38:14 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/23 18:11:42 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/25 12:30:10 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vect	ft_movecam(t_vect pos, t_vect dir)
 	return (ft_vectadd(pos, ft_vectmult(ft_vectnorm(temp), MOVE_SPEED)));
 }
 
-void	keyfunc(void *param)
+void	ft_keyfunc(void *param)
 {
 	t_data	*d;
 	bool	change;
@@ -63,12 +63,12 @@ void	keyfunc(void *param)
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
 	{
-		d->cam.vec = ft_vectrot(d->cam.vec, PI/25, 'y');
+		d->cam.vec = ft_vectrot(d->cam.vec, PI / 25, 'y');
 		change = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
 	{
-		d->cam.vec = ft_vectrot(d->cam.vec, -PI/25, 'y');
+		d->cam.vec = ft_vectrot(d->cam.vec, -PI / 25, 'y');
 		change = 1;
 	}
 	if (change)
