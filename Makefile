@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/25 10:18:19 by tleister         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 
 NAME		:= miniRT
 
@@ -37,7 +27,7 @@ OBJ_D_DIR	:= O_D_FILES
 
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c ft_atodb.c shapes.c surrounding.c)
-CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
+CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c resizefunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c)
 CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)
 
