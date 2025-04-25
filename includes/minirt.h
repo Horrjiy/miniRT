@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/23 18:06:57 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/25 12:38:42 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,17 @@ void	init_plane(t_data *data, char *line);
 void	init_cylinder(t_data *data, char *line);
 double	ft_atodb(char *str);
 
+// ----- rendering ----- //
+
+// goes througth all pixels of the window and sets them correctly
+void	ft_render(t_data *data);
+
 bool	ft_init(t_data *data);
-void	keyfunc(void *param);
+// checks for movement keys and sets vaues accordingly
+void	ft_keyfunc(void *param);
+// resizes the image if the window is resized
+void	ft_resizefunc(int32_t width, int32_t height, void *param);
+// closes the window if esc is pressed
 void	esc(mlx_key_data_t keydata, void *param);
 
 // ----- Vector functions ----- //
@@ -68,6 +77,10 @@ t_vect	ft_vectcross(t_vect v1, t_vect v2);
 t_vect	ft_vectdiv(t_vect v1, double num);
 double	ft_vectmag(t_vect v1);
 t_vect	ft_vectnorm(t_vect v1);
+// rotates a vector around an axis
+// @param v1 the vector
+// @param angle the rotation angle in radiant
+// @param axis the x, y or z axis
 t_vect	ft_vectrot(t_vect v1, double angle, char axis);
 void	ft_vectprint(char *str, t_vect v1);
 double	ft_vectdot(t_vect v1, t_vect v2);
@@ -76,7 +89,9 @@ double	ft_vectdot(t_vect v1, t_vect v2);
 
 void	freearr(char **strarr);
 void	free_data(t_data *data);
+// frees data, prints an error message and exits the program
 void	ft_parserr(t_data *data, int exnum);
+// Writes "Error\n" followed by the specified error message on fd 2.
 void	wr_err(char *msg);
 
 #endif
