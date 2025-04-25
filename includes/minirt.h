@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 18:05:45 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/23 18:06:57 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.666666666666666666666 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
-# define MOVE_SPEED 1.5
+# define MOVE_SPEED 0.5
+# define DIST 3
 
 # define PI 3.14159265358979323846264338327950288
 # define PI_2 1.57079632679489661923132169163975144
@@ -55,7 +56,8 @@ void	init_cylinder(t_data *data, char *line);
 double	ft_atodb(char *str);
 
 bool	ft_init(t_data *data);
-void	keyfunc(mlx_key_data_t keydata, void *param);
+void	keyfunc(void *param);
+void	esc(mlx_key_data_t keydata, void *param);
 
 // ----- Vector functions ----- //
 

@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:41:08 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/22 12:35:42 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:02:15 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,25 @@ double	ft_vectdot(t_vect v1, t_vect v2)
 
 t_vect	ft_vectrot(t_vect v1, double angle, char axis)
 {
+	t_vect	ret;
+
+	ret = v1;
 	if (axis == 'x')
 	{
-		v1.y = v1.y * cos(angle) - v1.z * sin(angle);
-		v1.z = v1.y * sin(angle) + v1.z * cos(angle);
+		ret.y = v1.y * cos(angle) - v1.z * sin(angle);
+		ret.z = v1.y * sin(angle) + v1.z * cos(angle);
 	}
 	else if (axis == 'y')
 	{
-		v1.x = v1.x * cos(angle) + v1.z * sin(angle);
-		v1.z = -v1.x * sin(angle) + v1.z * cos(angle);
+		ret.x = v1.x * cos(angle) + v1.z * sin(angle);
+		ret.z = -v1.x * sin(angle) + v1.z * cos(angle);
 	}
 	else if (axis == 'z')
 	{
-		v1.x = v1.x * cos(angle) - v1.y * sin(angle);
-		v1.y = v1.x * sin(angle) + v1.y * cos(angle);
+		ret.x = v1.x * cos(angle) - v1.y * sin(angle);
+		ret.y = v1.x * sin(angle) + v1.y * cos(angle);
 	}
-	return (v1);
+	return (ret);
 }
 
 double	ft_vectmag(t_vect v1)

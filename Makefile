@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/22 18:02:01 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/25 10:18:19 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= miniRT
 
-CFLAGS		:= -Wall -Wextra -Werror -MMD
-EXTRAFLAGS	:= -MP -g -c
-# EXTRAFLAGS	+= -fsanitize=address -g
+CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		+= -fsanitize=address -g
+EXTRAFLAGS	:= -MMD -MP -g -c
 
 LIBMLX		:= MLX42
 MLXFLAGS    := -ldl -lglfw -pthread -lm
@@ -60,7 +60,7 @@ END		:= \033[0m
 # 	RULES																		#
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
-all: $(NAME)
+all: $(NAME) 
 
 $(OBJ_D_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -74,7 +74,7 @@ $(NAME): $(LIBMLX) $(OFILES)
 	@make all -sC libft
 	@cmake $(LIBMLX) -B $(LIBMLX)/build &>/dev/null
 	@make all -sC $(LIBMLX)/build -j4 &>/dev/null
-	@cc $(SRCS) libft/libft.a $(LIBMLX)/build/libmlx42.a $(MLXFLAGS) -I$(LIBMLX)/include/MLX42 -o $(NAME) 
+	@cc $(SRCS) libft/libft.a $(LIBMLX)/build/libmlx42.a $(MLXFLAGS) $(CFLAGS) -I$(LIBMLX)/include/MLX42 -o $(NAME) 
 	@echo "$(GREEN)$(BOLD)CREATE PROGRAM: miniRT$(END)"
 
 new:
