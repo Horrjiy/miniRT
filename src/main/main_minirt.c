@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 12:50:54 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:38:26 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_c	setup_cam(void)
 t_a setup_amp(void)
 {
 	t_a amp;
-	amp.amb_light = 0.6;
+	amp.amb_light = 0;
 	amp.rgb.r = 255;
 	amp.rgb.g = 255;
 	amp.rgb.b = 255;

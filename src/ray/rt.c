@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/27 12:44:56 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:51:29 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,13 @@ t_hit	*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d)
 	double	min_dist;
 	t_hit	*closest;
 
-	t_hit *(*g_intersects[shape_amount])(t_obj *, t_coords, t_vect,
-			t_data *) = {&ft_sphere};
+	t_hit *(*g_intersects[shape_amount])(t_obj *, t_coords, t_vect) = {&ft_sphere};
 	closest = NULL;
 	min_dist = INFINITY;
 	obj = d->objects;
 	while (obj)
 	{
-		point = g_intersects[(int)obj->type](obj, or, dir, d);
+		point = g_intersects[(int)obj->type](obj, or, dir);
 		if (point)
 		{
 			if (min_dist > point->dist)
@@ -106,6 +105,8 @@ void	ft_render(t_data *data)
 				// printf("\n");
 				// printf("%d",ft_rgba(hit->col));
 				hit->col = ft_check_ligth(hit, data);
+				// if(hit->col.r && hit->col.g && hit->col.b)
+				// 	ft_vectprint("%l\n", hit->col);
 				my_put_pixel(data->img, x, y, ft_rgba(hit->col));
 				free(hit);
 			}

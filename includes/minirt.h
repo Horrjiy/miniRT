@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 12:17:52 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:51:12 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	esc(mlx_key_data_t keydata, void *param);
 
 // -------- objects --------- //
 
-t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_data *d);
+t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
 
 // -------- ligth --------- //
 

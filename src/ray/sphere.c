@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:58:45 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/27 12:36:09 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:50:59 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_b_rgb	ft_convertrgb(t_rgbcolor col);
 
-t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_data *d)
+t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir)
 {
 	t_sp	sp;
 	double	b;
@@ -39,7 +39,7 @@ t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_data *d)
 		p->dist = (-b - in_sqrt) / (2 * a);
 	if (p->dist <= 0)
 		return (free(p), NULL);
-	p->col = ft_get_ligthcolor(ft_convertrgb(sp.rgb), d->amb.amb_light);
+	p->col = ft_convertrgb(sp.rgb);
 	p->obj = obj;
 	p->point = ft_vectadd(or, ft_vectmult(dir, p->dist));
 	p->normal = ft_vectnorm(ft_vectsub(p->point, sp.pos));
