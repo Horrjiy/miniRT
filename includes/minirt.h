@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 12:38:42 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:17:52 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,34 @@ double	ft_atodb(char *str);
 // goes througth all pixels of the window and sets them correctly
 void	ft_render(t_data *data);
 
+// gets the closest hit point of the line defined by origin and dir with any object
+t_hit	*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d);
+
+// initializes the data
 bool	ft_init(t_data *data);
+
 // checks for movement keys and sets vaues accordingly
 void	ft_keyfunc(void *param);
+
 // resizes the image if the window is resized
 void	ft_resizefunc(int32_t width, int32_t height, void *param);
+
 // closes the window if esc is pressed
 void	esc(mlx_key_data_t keydata, void *param);
+
+// -------- objects --------- //
+
+t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_data *d);
+
+// -------- ligth --------- //
+
+t_b_rgb	ft_get_ligthcolor(t_b_rgb light, double p2);
+
+// convert t_rgb to t_b_rgb
+t_b_rgb	ft_convertrgb(t_rgbcolor col);
+
+// calculates the color for lit points
+t_b_rgb	ft_check_ligth(t_hit *hit, t_data *d);
 
 // ----- Vector functions ----- //
 
@@ -82,8 +103,9 @@ t_vect	ft_vectnorm(t_vect v1);
 // @param angle the rotation angle in radiant
 // @param axis the x, y or z axis
 t_vect	ft_vectrot(t_vect v1, double angle, char axis);
-void	ft_vectprint(char *str, t_vect v1);
+void	ft_vectprint(char *str, ...);
 double	ft_vectdot(t_vect v1, t_vect v2);
+double	ft_vectdist(t_coords p1, t_coords p2);
 
 // ----- free & error ----- //
 

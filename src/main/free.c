@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/21 20:00:50 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/26 20:46:52 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,20 @@ void	freearr(char **strarr)
 
 void	free_data(t_data *data)
 {
+	void	*next;
+
 	if (data->fd > 2)
 		close(data->fd);
 	if (data->temp)
 		free(data->temp);
 	if (data->scene)
 		freearr(data->scene);
+	while (data->objects)
+	{
+		next = data->objects->next;
+		free(data->objects);
+		data->objects = next;
+	}
+	mlx_delete_image(data->mlx, data->img);
+	mlx_terminate(data->mlx);
 }

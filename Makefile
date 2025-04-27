@@ -28,8 +28,8 @@ OBJ_D_DIR	:= O_D_FILES
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c ft_atodb.c shapes.c surrounding.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c resizefunc.c)
-CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c)
-CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)
+CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector_norm.c vector2.c)
+CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c sphere.c ligths.c)
 
 SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))

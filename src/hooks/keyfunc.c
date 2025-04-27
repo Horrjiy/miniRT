@@ -6,13 +6,11 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:38:14 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/25 12:30:10 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/25 22:39:34 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-void	ft_render(t_data *data);
 
 t_vect	ft_movecam(t_vect pos, t_vect dir)
 {

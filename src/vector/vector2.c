@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:56:29 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/25 11:57:33 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:44:35 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vect	ft_vectcross(t_vect v1, t_vect v2)
 
 double	ft_vectdot(t_vect v1, t_vect v2)
 {
-	return (v1.x * v2.x + v2.y * v2.y + v1.z * v2.z);
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
 t_vect	ft_vectrot(t_vect v1, double angle, char axis)
@@ -48,4 +48,9 @@ t_vect	ft_vectrot(t_vect v1, double angle, char axis)
 		ret.y = v1.x * sin(angle) + v1.y * cos(angle);
 	}
 	return (ret);
+}
+
+double	ft_vectdist(t_coords p1, t_coords p2)
+{
+	return (ft_vectmag(ft_vectsub(p1, p2)));
 }
