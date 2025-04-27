@@ -6,15 +6,15 @@
 #    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/25 18:10:00 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/27 14:27:20 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= miniRT
 
-CFLAGS		:= -Wall -Wextra -Werror
-CFLAGS		+= -fsanitize=address -g
-EXTRAFLAGS	:= -MMD -MP -g -c
+CFLAGS		:= -Wall -Wextra -Werror -g
+#CFLAGS		+= -fsanitize=address -g
+EXTRAFLAGS	:= -MMD -MP -c
 
 LIBMLX		:= MLX42
 MLXFLAGS    := -ldl -lglfw -pthread -lm
@@ -36,7 +36,7 @@ OBJ_D_DIR	:= O_D_FILES
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
 CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
-CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c ft_atox.c ft_comlen.c convert.c shapes.c surrounding.c)
+CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c convert.c parsing_utils.c ft_atox.c shapes.c surrounding.c)
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector2.c vector_norm.c)
 CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)

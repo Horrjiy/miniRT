@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 18:08:55 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/25 19:10:23 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void			init_camera(t_data *data, char *line);
 void			init_sphere(t_data *data, char *line);
 void			init_plane(t_data *data, char *line);
 void			init_cylinder(t_data *data, char *line);
+void			split_line(t_data *data, char **line);
+void			ft_node_addback(t_obj **head, t_obj *node);
+t_obj			*init_object_node(int type, t_data *data);
+t_obj			*ft_lastnode(t_obj *head);
 double			ft_atodb(char *str);
 int				ft_safe_atoi(char *str, t_data *data);
 unsigned char	ft_safe_atouc(char *str, t_data *data);
@@ -65,15 +69,15 @@ t_coords		ft_convert_coords(t_data *data);
 // ----- rendering ----- //
 
 // goes througth all pixels of the window and sets them correctly
-void	ft_render(t_data *data);
+void			ft_render(t_data *data);
 
-bool	ft_init(t_data *data);
+bool			ft_init(t_data *data);
 // checks for movement keys and sets vaues accordingly
-void	ft_keyfunc(void *param);
+void			ft_keyfunc(void *param);
 // resizes the image if the window is resized
-void	ft_resizefunc(int32_t width, int32_t height, void *param);
+void			ft_resizefunc(int32_t width, int32_t height, void *param);
 // closes the window if esc is pressed
-void	esc(mlx_key_data_t keydata, void *param);
+void			esc(mlx_key_data_t keydata, void *param);
 
 // ----- Vector functions ----- //
 

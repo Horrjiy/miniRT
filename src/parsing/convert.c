@@ -6,11 +6,23 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:09:29 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 17:14:09 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/27 15:53:22 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+size_t	ft_comlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	if (s == NULL)
+		return (0);
+	while (s[len] && s[len] != ',')
+		len++;
+	return (len);
+}
 
 double	ft_convert_double(t_data *data)
 {
@@ -63,7 +75,8 @@ t_coords	ft_convert_coords(t_data *data)
 	temp = data->str;
 	while (temp[i])
 	{
-		if (!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '-')
+		if (!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '-'
+			&& temp[i] != '.')
 			ft_parserr(data, 204);
 		i++;
 	}
