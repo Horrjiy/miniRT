@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/26 20:46:52 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:20:41 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ void	free_data(t_data *data)
 {
 	void	*next;
 
-	if (data->fd > 2)
-		close(data->fd);
-	if (data->temp)
-		free(data->temp);
-	if (data->scene)
-		freearr(data->scene);
+	// if (data->temp)
+	// 	free(data->temp);
+	// if (data->scene)
+	// 	freearr(data->scene);
 	while (data->objects)
 	{
 		next = data->objects->next;

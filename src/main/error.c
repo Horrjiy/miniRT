@@ -6,13 +6,12 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 12:59:20 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:28:09 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-//Writes "Error\n" followed by the specified error message on fd 2. 
 void wr_err(char *msg)
 {
 	write(2, "Error\n", 6);

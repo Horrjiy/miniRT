@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:59:10 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/27 19:50:48 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:29:56 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_b_rgb	ft_get_ligthcolor(t_b_rgb light, double p2)
 {
 	t_b_rgb	c;
 
-	// printf("\tp2: %g", p2);
 	if (p2 > 1)
 		p2 = 1;
 	else if (p2 < 0)
@@ -32,12 +31,9 @@ static t_b_rgb	ft_mix_color(t_hit *hit, t_vect ligth_dir, t_data *d)
 	t_b_rgb	ligth_col;
 	double	dot_p;
 
-	// ft_vectprint("before: %l", hit->col);
 	dot_p = ft_vectdot(ligth_dir, hit->normal);
-	// printf("\tdot_p: %g\n", dot_p);
 	ligth_col = ft_get_ligthcolor(ft_convertrgb(d->light.rgb), d->light.bright
 			* dot_p);
-	// ft_vectprint("\t%l", ligth_col);
 	hit->col.r = hit->col.r * d->amb.amb_light + ligth_col.r * hit->col.r;
 	hit->col.g = hit->col.g * d->amb.amb_light + ligth_col.g * hit->col.g;
 	hit->col.b = hit->col.b * d->amb.amb_light + ligth_col.b * hit->col.b;
@@ -50,18 +46,13 @@ static t_b_rgb	ft_mix_color(t_hit *hit, t_vect ligth_dir, t_data *d)
 	return (hit->col);
 }
 
-t_b_rgb	ft_check_ligth(t_hit *hit, t_data *d)
+t_b_rgb	ft_ligthing(t_hit *hit, t_data *d)
 {
 	t_vect	dir;
 	t_hit	*ligth_hit;
 	dir = ft_vectnorm(ft_vectsub(d->light.pos, hit->point));
 	ligth_hit = ft_get_closest_hitpoint(ft_vectadd(hit->point,ft_vectmult(dir, 0.001)), dir, d);
 	if (ligth_hit)
-	{
-		// ft_vectprint("\nhit:\t%v\n", hit->point);
-		// ft_vectprint("ligth:\t%v\n", ligth_hit->point);
 		return (free(ligth_hit), ft_get_ligthcolor(hit->col, d->amb.amb_light));
-	}
-	// printf("change\n");
 	return (ft_mix_color(hit, dir, d));
 }

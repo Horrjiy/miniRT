@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/27 12:17:58 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:17:40 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,6 @@ typedef struct s_hitpoint
 	t_b_rgb col;    // the color of the object
 	t_coords point; // the intersection point
 	double dist;    // the distance between cam and object
-	double		t;
-	// not sure if this is needed will maybe get removed in the future
 }				t_hit;
 
 // please do not put thing in there that are just needed at one point in the code
@@ -127,7 +125,6 @@ typedef struct s_data
 	t_a amb;                 // the ambient ligth
 	t_l light;               // a light source
 	int all_surroundings[3]; // tracks camera ambient and ligth
-	int			fd;
 	char *temp; // temporary string; still overcomplicated
 	char		**scene;
 }				t_data;

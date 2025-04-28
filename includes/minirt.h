@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 19:51:12 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:33:36 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 
 // ----- parsing ----- //
 
-void	ft_analyze(t_data *data);
+void	ft_analyze(t_data *data, int fd);
 void	init_ambient(t_data *data, char *line);
 void	init_light(t_data *data, char *line);
 void	init_camera(t_data *data, char *line);
@@ -81,13 +81,23 @@ t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
 
 // -------- ligth --------- //
 
-t_b_rgb	ft_get_ligthcolor(t_b_rgb light, double p2);
+// calculates the actual color of the ligth out of the color and brigthness
+t_b_rgb	ft_get_ligthcolor(t_b_rgb light, double brigth);
 
 // convert t_rgb to t_b_rgb
 t_b_rgb	ft_convertrgb(t_rgbcolor col);
 
+// converts the t_b_rgb to and rgba integer format
+uint32_t	ft_rgba(t_b_rgb col);
+
 // calculates the color for lit points
-t_b_rgb	ft_check_ligth(t_hit *hit, t_data *d);
+t_b_rgb	ft_ligthing(t_hit *hit, t_data *d);
+
+// maps a number within a range into another range
+double	ft_map(int num, double oldmax, double newmin, double newmax);
+
+// puts only a pixel if x/y are inside the image
+void	my_put_pixel(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color);
 
 // ----- Vector functions ----- //
 
@@ -98,6 +108,7 @@ t_vect	ft_vectcross(t_vect v1, t_vect v2);
 t_vect	ft_vectdiv(t_vect v1, double num);
 double	ft_vectmag(t_vect v1);
 t_vect	ft_vectnorm(t_vect v1);
+
 // rotates a vector around an axis
 // @param v1 the vector
 // @param angle the rotation angle in radiant
@@ -111,8 +122,10 @@ double	ft_vectdist(t_coords p1, t_coords p2);
 
 void	freearr(char **strarr);
 void	free_data(t_data *data);
+
 // frees data, prints an error message and exits the program
 void	ft_parserr(t_data *data, int exnum);
+
 // Writes "Error\n" followed by the specified error message on fd 2.
 void	wr_err(char *msg);
 
