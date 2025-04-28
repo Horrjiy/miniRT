@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:37:42 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 15:53:33 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/28 15:52:22 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	init_cylinder(t_data *data, char *line)
 	free(data->str);
 	split_line(data, &line);
 	temp->cylinder.vec = ft_convert_coords(data);
+	ft_vectnorm2(&(temp->cylinder.vec));
 	if(isnan(temp->cylinder.vec.x) || isnan(temp->cylinder.vec.y) || isnan(temp->cylinder.vec.z))
 		ft_parserr(data, 206);
 	free(data->str);

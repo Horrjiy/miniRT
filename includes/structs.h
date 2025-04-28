@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/28 10:52:31 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 12:13:19 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_scene_objects
 
 typedef struct s_hitpoint
 {
-	t_obj *obj;     // the closest hook thw ray is intersecting with
+	t_obj *obj;     // the closest shape the ray is intersecting with
 	t_vect normal;  // normal vector of the obj
 	t_b_rgb col;    // the color of the object
 	t_coords point; // the intersection point

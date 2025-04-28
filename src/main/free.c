@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/28 10:46:50 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 12:11:03 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	freearr(char **strarr)
 		i++;
 	}
 	free(strarr);
+}
+
+void freen(char **str)
+{
+	free(*str);
+	*str = NULL;
 }
 
 void	free_data(t_data *data)
