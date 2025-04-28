@@ -6,13 +6,11 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:38:14 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/25 12:30:10 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:01:07 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-void	ft_render(t_data *data);
 
 t_vect	ft_movecam(t_vect pos, t_vect dir)
 {
@@ -31,42 +29,42 @@ void	ft_keyfunc(void *param)
 
 	change = false;
 	d = (t_data *)param;
-	if (mlx_is_key_down(d->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, d->cam.vec);
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_S))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectmult(d->cam.vec, -1));
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectrot(d->cam.vec, PI_2, 'y'));
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectrot(d->cam.vec, -PI_2, 'y'));
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_UP))
 	{
 		d->cam.pos.y += 0.1;
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_DOWN))
 	{
 		d->cam.pos.y -= 0.1;
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT))
 	{
 		d->cam.vec = ft_vectrot(d->cam.vec, PI / 25, 'y');
 		change = 1;
 	}
-	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))
 	{
 		d->cam.vec = ft_vectrot(d->cam.vec, -PI / 25, 'y');
 		change = 1;

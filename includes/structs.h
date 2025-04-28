@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/25 18:06:00 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/28 10:52:31 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct s_rgbcolor
 	unsigned char g; // green part
 	unsigned char b; // blue part
 }				t_rgb;
+
+typedef struct s_color_brigthness
+{
+	double r; // red part
+	double g; // green part
+	double b; // blue part
+}				t_b_rgb;
 
 // ~-~-~-~-~-~-~ scene elements ~-~-~-~-~-~-~ //
 
@@ -84,7 +91,7 @@ typedef enum e_status
 	plane,
 	cylinder,
 	shape_amount
-	// bli bla blupp
+	// not sure if this is needed will maybe get removed in the future
 }				t_status;
 
 typedef struct s_scene_objects
@@ -99,17 +106,17 @@ typedef struct s_scene_objects
 	};
 }				t_obj;
 
+
 typedef struct s_hitpoint
 {
-	t_obj *obj;     // the closest hook the ray is intersecting with
-	t_rgb col;      // the color of the object
+	t_obj *obj;     // the closest hook thw ray is intersecting with
+	t_vect normal;  // normal vector of the obj
+	t_b_rgb col;    // the color of the object
 	t_coords point; // the intersection point
 	double dist;    // the distance between cam and object
-	double		t;
-	// blah blah blah
 }				t_hit;
 
-// Tammo is gay.
+// please do not put thing in there that are just needed at one point in the code
 typedef struct s_data
 {
 	mlx_t *mlx;        // mlx window
@@ -118,8 +125,8 @@ typedef struct s_data
 	t_c cam;           // the camera
 	t_a amb;           // the ambient ligth
 	t_l light;         // a light source
-	int all_surrnd[3]; // mischa stuff
-	char *str;         // A string.
+	int all_surrnd[3]; // tracks camera ambient and ligth
+	char *str;         // A string; still overcomplicated
 	char		**scene;
 }				t_data;
 

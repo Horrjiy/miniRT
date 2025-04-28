@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/25 19:10:23 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/28 10:52:18 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,44 @@ t_coords		ft_convert_coords(t_data *data);
 // goes througth all pixels of the window and sets them correctly
 void			ft_render(t_data *data);
 
+// gets the closest hit point of the line defined by origin and dir with any object
+t_hit	*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d);
+
+// initializes the data
 bool			ft_init(t_data *data);
+
 // checks for movement keys and sets vaues accordingly
 void			ft_keyfunc(void *param);
+
 // resizes the image if the window is resized
 void			ft_resizefunc(int32_t width, int32_t height, void *param);
+
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);
+
+// -------- objects --------- //
+
+t_hit	*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
+
+// -------- ligth --------- //
+
+// calculates the actual color of the ligth out of the color and brigthness
+t_b_rgb	ft_get_ligthcolor(t_b_rgb light, double brigth);
+
+// convert t_rgb to t_b_rgb
+t_b_rgb	ft_convertrgb(t_rgb col);
+
+// converts the t_b_rgb to and rgba integer format
+uint32_t	ft_rgba(t_b_rgb col);
+
+// calculates the color for lit points
+t_b_rgb	ft_ligthing(t_hit *hit, t_data *d);
+
+// maps a number within a range into another range
+double	ft_map(int num, double oldmax, double newmin, double newmax);
+
+// puts only a pixel if x/y are inside the image
+void	my_put_pixel(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color);
 
 // ----- Vector functions ----- //
 
@@ -88,20 +119,24 @@ t_vect			ft_vectcross(t_vect v1, t_vect v2);
 t_vect			ft_vectdiv(t_vect v1, double num);
 double			ft_vectmag(t_vect v1);
 t_vect			ft_vectnorm(t_vect v1);
+
 // rotates a vector around an axis
 // @param v1 the vector
 // @param angle the rotation angle in radiant
 // @param axis the x, y or z axis
 void			ft_vectnorm2(t_coords *vec);
 t_vect			ft_vectrot(t_vect v1, double angle, char axis);
-void			ft_vectprint(char *str, t_vect v1);
+void			ft_vectprint(char *str, ...);
 double			ft_vectdot(t_vect v1, t_vect v2);
+double	ft_vectdist(t_coords p1, t_coords p2);
 
 // ----- free & error ----- //
 
 void			freearr(char **strarr);
 void			free_data(t_data *data);
+
 void			ft_parserr(t_data *data, int exnum);
+
 void			wr_err(char *msg);
 
 #endif

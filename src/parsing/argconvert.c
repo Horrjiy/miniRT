@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argconvert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 16:09:23 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/28 10:52:38 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,5 @@ void	ft_analyze(t_data *data, int fd)
 	init_identifier(data, data->scene, NULL);
 	if (!data->all_surrnd[0] || !data->all_surrnd[1] || !data->all_surrnd[2])
 		return (ft_parserr(data, 203));
-	printpars(data);
+	// printpars(data);
 }

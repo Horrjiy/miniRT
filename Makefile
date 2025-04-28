@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/27 14:27:20 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/28 10:53:54 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,19 +29,21 @@ PARS_DIR	:= $(SRC_DIR)/parsing
 HOOK_DIR	:= $(SRC_DIR)/hooks
 VEC_DIR		:= $(SRC_DIR)/vector
 RAY_DIR		:= $(SRC_DIR)/ray
+OBJ_DIR		:= $(SRC_DIR)/objects
 OBJ_D_DIR	:= O_D_FILES
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 # 	FILES																		#
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*	#
 
-CFILE_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
+CFILES_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c convert.c parsing_utils.c ft_atox.c shapes.c surrounding.c)
-CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
+CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c resizefunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector2.c vector_norm.c)
-CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c)
+CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c ligths.c hitpoint.c utils.c)
+CFILES_OBJ	:= $(addprefix $(OBJ_DIR)/, sphere.c)
 
-SRCS	= $(CFILE_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY)
+SRCS	= $(CFILES_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY) $(CFILES_OBJ)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
 DFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.d))
 
