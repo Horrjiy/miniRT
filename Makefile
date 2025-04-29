@@ -6,13 +6,13 @@
 #    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/28 15:25:19 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/29 15:24:12 by mpoplow          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= miniRT
 
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror
 #CFLAGS		+= -fsanitize=address -g
 EXTRAFLAGS	:= -MMD -MP -c
 
@@ -38,7 +38,7 @@ OBJ_D_DIR	:= O_D_FILES
 
 CFILES_MAIN	:= $(addprefix $(MAIN_DIR)/, main_minirt.c error.c free.c ft_init.c)
 CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c convert.c parsing_utils.c ft_atox.c shapes.c surrounding.c)
-CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c resizefunc.c)
+CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector2.c vector_norm.c)
 CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c ligths.c hitpoint.c utils.c)
 CFILES_OBJ	:= $(addprefix $(OBJ_DIR)/, sphere.c plane.c)

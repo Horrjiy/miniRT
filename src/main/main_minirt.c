@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/28 10:54:24 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:19:57 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ int	main(int argc, char *argv[])
 
 	fd = ft_argvcheck(argc, argv);
 	if (fd == -1)
-		return (wr_err("Specify the path to a valid .rt file.\n"), 1);
+		return (wr_err("Specify the path to a valid .rt file\n"), 1);
 	ft_analyze(&data, fd);
 	if (!ft_init(&data))
-		return (ft_putstr_fd("Error", 2), 1);
+		return (ft_parserr(&data, ENOMEM), 12);
 	ft_render(&data);
 	mlx_key_hook(data.mlx, esc, &data);
 	mlx_loop_hook(data.mlx, ft_keyfunc, &data);
-	mlx_resize_hook(data.mlx, ft_resizefunc, &data);
 	mlx_loop(data.mlx);
 	free_data(&data);
 }

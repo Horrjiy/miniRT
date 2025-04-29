@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/28 15:25:37 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:18:05 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 
 // # define W_WIDTH 1500
 // # define W_HEIGTH 900
-# define W_WIDTH 600
-# define W_HEIGTH 500
+# define W_WIDTH 1280
+# define W_HEIGTH 720
 # define V_WIDTH 2
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
-# define V_HEIGTH 1.666666666666666666666 //  W_HEIGTH / W_WIDTH * V_WIDTH
+# define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 7
 # define DIST 3
 
 # define PI 3.14159265358979323846264338327950288

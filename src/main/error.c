@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/28 10:46:38 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:48:04 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void ft_parserr(t_data *data, int exnum)
 		wr_err("Number out of range\n");
 	else if(exnum == 206)
 		wr_err("Directon vector can't have magnitute 0\n");
+	else if(exnum == 207)
+		wr_err("missing information\n");
 	exit(exnum);
 }

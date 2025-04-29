@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:57:14 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 15:47:21 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 14:50:05 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	split_line(t_data *data, char **line)
 	int	i;
 
 	i = 0;
+	if(**line == '\0')
+		return (ft_parserr(data, 207));
 	(*line)++;
 	if(ft_isalpha(**line))
 		(*line)++;
