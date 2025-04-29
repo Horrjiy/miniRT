@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:26 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 16:03:36 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 18:09:02 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static double	ft_fraction(int i, char *str)
 double	ft_atodb(char *str)
 {
 	int		i;
-	double	number;
+	long double	number;
 	int		sign;
 
 	number = 0.0;
 	sign = 1;
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-')
 	{
 		if (str[i] == '-')
 			sign = -1;
@@ -54,6 +54,8 @@ double	ft_atodb(char *str)
 		return ((number + ft_fraction(i, str)) * sign);
 	return (number * sign);
 }
+
+
 
 int ft_safe_atoi(char *str, t_data *data)
 {

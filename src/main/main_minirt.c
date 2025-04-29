@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 15:29:03 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:52:45 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_argvcheck(int argc, char **argv)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	int fd;
+	int		fd;
 
 	fd = ft_argvcheck(argc, argv);
 	if (fd == -1)

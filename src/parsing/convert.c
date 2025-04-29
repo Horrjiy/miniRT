@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:09:29 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/27 15:53:22 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 19:19:07 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,48 @@ size_t	ft_comlen(const char *s)
 	return (len);
 }
 
-double	ft_convert_double(t_data *data)
+static bool	check_input(char *temp, int minus, int period, int comma)
 {
 	int	i;
-
+	
 	i = 0;
-	while (data->str[i])
+	if (!ft_isdigit(temp[i]) && temp[i++] != '-')
+		return (false);
+	if(!ft_isdigit(temp[ft_strlen(temp) - 1]))
+		return (false);
+	while (temp[i])
 	{
-		if (!ft_isdigit(data->str[i]) && data->str[i] != '.'
-			&& data->str[i] != '-')
-			ft_parserr(data, 204);
+		if ((!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '-'
+				&& temp[i] != '.'))
+			return (false);
+		if (temp[i] == ',')
+			comma--;
+		if (temp[i] == '-')
+			minus--;
+		if (temp[i] == '.')
+			period--;
 		i++;
 	}
+	if (minus < 0 || comma != 0 || period < 0)
+		return (false);
+	return(true);
+}
+
+double	ft_convert_double(t_data *data)
+{
+	if (check_input(data->str, 1, 1, 0) == false)
+		ft_parserr(data, 204);
 	return (ft_atodb(data->str));
 }
 
 t_rgb	ft_convert_rgb(t_data *data)
 {
-	int		i;
 	char	*temp;
 	t_rgb	color;
 
-	i = 0;
 	temp = data->str;
-	while (temp[i])
-	{
-		if (!ft_isdigit(temp[i]) && temp[i] != ',')
-			ft_parserr(data, 204);
-		i++;
-	}
+	if (check_input(temp, 0, 0, 2) == false)
+		ft_parserr(data, 204);
 	color.r = ft_safe_atouc(temp, data);
 	while (*(temp) && *(temp) != ',')
 		temp++;
@@ -67,27 +80,20 @@ t_rgb	ft_convert_rgb(t_data *data)
 
 t_coords	ft_convert_coords(t_data *data)
 {
-	int			i;
 	char		*temp;
 	t_coords	coord;
 
-	i = 0;
 	temp = data->str;
-	while (temp[i])
-	{
-		if (!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '-'
-			&& temp[i] != '.')
-			ft_parserr(data, 204);
-		i++;
-	}
-	coord.x = ft_safe_atoi(temp, data);
+	if (check_input(temp, 3, 3, 2) == false)
+		ft_parserr(data, 204);
+	coord.x = ft_atodb(temp);
 	while (*(temp) && *(temp) != ',')
 		temp++;
 	temp++;
-	coord.y = ft_safe_atoi(temp, data);
+	coord.y = ft_atodb(temp);
 	while (*(temp) && *(temp) != ',')
 		temp++;
 	temp++;
-	coord.z = ft_safe_atoi(temp, data);
+	coord.z = ft_atodb(temp);
 	return (coord);
 }

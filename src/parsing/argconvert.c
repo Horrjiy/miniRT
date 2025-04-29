@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 15:33:46 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 18:47:09 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_analyze(t_data *data, int fd)
 	data->all_surrnd[1] = 0;
 	data->all_surrnd[2] = 0;
 	data->str = get_next_text(fd);
+	close(fd);
 	if (!data->str)
 		return (ft_parserr(data, 201));
 	data->scene = ft_split(data->str, '\n');
