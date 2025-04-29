@@ -100,6 +100,7 @@ static void	init_identifier(t_data *data, char **scene, char *line)
 void	ft_analyze(t_data *data, int fd)
 {
 	data->objects = NULL;
+	data->mlx = NULL;
 	data->all_surrnd[0] = 0;
 	data->all_surrnd[1] = 0;
 	data->all_surrnd[2] = 0;

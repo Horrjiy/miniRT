@@ -6,7 +6,7 @@
 #    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/28 10:53:54 by tleister         ###   ########.fr        #
+#    Updated: 2025/04/29 15:07:21 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ CFILES_PARS	:= $(addprefix $(PARS_DIR)/, argconvert.c convert.c parsing_utils.c 
 CFILES_HOOK	:= $(addprefix $(HOOK_DIR)/, keyfunc.c resizefunc.c)
 CFILES_VEC	:= $(addprefix $(VEC_DIR)/, vector.c vector2.c vector_norm.c)
 CFILES_RAY	:= $(addprefix $(RAY_DIR)/, rt.c ligths.c hitpoint.c utils.c)
-CFILES_OBJ	:= $(addprefix $(OBJ_DIR)/, sphere.c)
+CFILES_OBJ	:= $(addprefix $(OBJ_DIR)/, sphere.c cylinder.c)
 
 SRCS	= $(CFILES_MAIN) $(CFILES_PARS) $(CFILES_HOOK) $(CFILES_VEC) $(CFILES_RAY) $(CFILES_OBJ)
 OFILES	= $(addprefix $(OBJ_D_DIR)/, $(SRCS:.c=.o))
