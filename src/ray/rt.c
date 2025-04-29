@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/28 10:49:48 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:24:28 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_render(t_data *data)
 						data->cam), data);
 			if (hit)
 			{
-				hit->col = ft_ligthing(hit, data);
+				hit->col = ft_lighting(hit, data);
 				my_put_pixel(data->img, x, y, ft_rgba(hit->col));
 				free(hit);
 			}
 			else
-				my_put_pixel(data->img, x, y, 0xff);
+				my_put_pixel(data->img, x, y, (255 - (255 * data->amb.amb_light)));
 			x++;
 		}
 		y++;

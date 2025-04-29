@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:29:26 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/28 10:52:48 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:37:27 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ uint32_t	ft_rgba(t_b_rgb col)
 			* 255) << 16 | (unsigned char)(col.b * 255) << 8 | 0xff);
 }
 
-t_b_rgb	ft_convertrgb(t_rgb col)
+t_b_rgb	ft_rgbtod(t_rgb col)
 {
 	t_b_rgb	c;
 

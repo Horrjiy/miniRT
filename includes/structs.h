@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/28 12:13:19 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:24:01 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ typedef struct s_data
 	mlx_image_t *img;  // mlx image
 	t_obj *objects;    // all the objects
 	t_c cam;           // the camera
-	t_a amb;           // the ambient ligth
+	t_a amb;           // the ambient light
 	t_l light;         // a light source
-	int all_surrnd[3]; // tracks camera ambient and ligth
+	int all_surrnd[3]; // tracks camera ambient and light
 	char *str;         // A string; still overcomplicated
 	char		**scene;
 }				t_data;

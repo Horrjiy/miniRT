@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 15:18:05 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 16:23:43 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
-# define MOVE_SPEED 7
+# define MOVE_SPEED 25
 # define DIST 3
 
 # define PI 3.14159265358979323846264338327950288
@@ -90,20 +90,18 @@ void			esc(mlx_key_data_t keydata, void *param);
 
 t_hit			*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
 t_hit			*ft_plane(t_obj *obj, t_vect supv, t_vect dirv);
+t_hit			*ft_cylinder(t_obj *obj, t_coords or, t_vect dir);
 
-// -------- ligth --------- //
-
-// calculates the actual color of the ligth out of the color and brigthness
-t_b_rgb			ft_get_ligthcolor(t_b_rgb light, double brigth);
+// -------- light --------- //
 
 // convert t_rgb to t_b_rgb
-t_b_rgb			ft_convertrgb(t_rgb col);
+t_b_rgb			ft_rgbtod(t_rgb col);
 
 // converts the t_b_rgb to and rgba integer format
 uint32_t		ft_rgba(t_b_rgb col);
 
 // calculates the color for lit points
-t_b_rgb			ft_ligthing(t_hit *hit, t_data *d);
+t_b_rgb			ft_lighting(t_hit *hit, t_data *d);
 
 // maps a number within a range into another range
 double			ft_map(int num, double oldmax, double newmin, double newmax);

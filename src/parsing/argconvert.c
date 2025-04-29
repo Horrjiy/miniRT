@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 14:33:25 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:33:46 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 //Checks if the identifier is valid.
 //If valid, redirects to the identifier's function.
-static void	init_identifier(t_data *data, char **scene, char *line)
+static void	init_identifier(t_data *data, char **scene, char *line, int i)
 {
-	int	i;
-
-	i = 0;
 	while (scene[i])
 	{
 		line = scene[i];
-		while(*line && ft_iswhtspc(*line))
+		while (*line && ft_iswhtspc(*line))
 			line++;
-		if(ft_strlen(line) < 3)
+		if (ft_strlen(line) < 9)
 			ft_parserr(data, 202);
 		if (line[0] == 'A' && ft_iswhtspc(line[1]))
 			init_ambient(data, line);
@@ -48,6 +45,7 @@ void	ft_analyze(t_data *data, int fd)
 {
 	data->objects = NULL;
 	data->scene = NULL;
+	data->mlx = NULL;
 	data->all_surrnd[0] = 0;
 	data->all_surrnd[1] = 0;
 	data->all_surrnd[2] = 0;
@@ -58,8 +56,7 @@ void	ft_analyze(t_data *data, int fd)
 	if (!data->scene)
 		return (ft_parserr(data, ENOMEM));
 	freen(&data->str);
-	init_identifier(data, data->scene, NULL);
+	init_identifier(data, data->scene, NULL, 0);
 	if (!data->all_surrnd[0] || !data->all_surrnd[1] || !data->all_surrnd[2])
 		return (ft_parserr(data, 203));
-	// printpars(data);
 }

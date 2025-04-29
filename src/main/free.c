@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 14:52:14 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:29:24 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void freen(char **str)
 
 void	free_data(t_data *data)
 {
-	void	*next;
+	void *next = NULL;
 
 	if (data->str)
 		freen(&(data->str));
@@ -45,9 +45,9 @@ void	free_data(t_data *data)
 		free(data->objects);
 		data->objects = next;
 	}
-	// mlx_delete_image(data->mlx, data->img);
-	// mlx_terminate(data->mlx);
-
-	(void)next;
-	(void)data;
+	if (data->mlx)
+	{
+		mlx_delete_image(data->mlx, data->img);
+		mlx_terminate(data->mlx);
+	}
 }
