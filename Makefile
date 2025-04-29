@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/17 16:55:42 by mpoplow           #+#    #+#              #
-#    Updated: 2025/04/29 16:24:56 by mpoplow          ###   ########.fr        #
+#    Updated: 2025/04/29 17:00:44 by tleister         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= miniRT
 
 CFLAGS		:= -Wall -Wextra -Werror
-#CFLAGS		+= -fsanitize=address -g
+CFLAGS		+= -fsanitize=address -g
 EXTRAFLAGS	:= -MMD -MP -c
 
 LIBMLX		:= MLX42

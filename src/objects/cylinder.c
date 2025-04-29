@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 15:50:58 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:21:15 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 }
 
 // try infinite cylinder for now
-t_hit	*ft_cylinder(t_obj *obj, t_coords or, t_vect dir)
+t_hit	*ft_inf_cylinder(t_obj *obj, t_coords or, t_vect dir)
 {
 	t_cy	cy;
 	double	a;
@@ -51,4 +51,44 @@ t_hit	*ft_cylinder(t_obj *obj, t_coords or, t_vect dir)
 		return (free(point), NULL);
 	set_hit(point, or, dir, obj);
 	return (point);
+}
+
+// static void	replace_point(t_hit **point, t_hit *temp, t_cy cy)
+// {
+// 	if (temp && pow(ft_vectdist(temp->point, cy.pos),2) <= pow(cy.h / 2, 2) + pow(cy.dia / 2, 2)
+// 		&& (!(*point) || temp->dist < (*point)->dist))
+// 	{
+// 		free(*point);
+// 		*point = temp;
+// 	}
+// 	else
+// 		free(temp);
+// }
+
+t_hit	*ft_cylinder(t_obj *obj, t_coords or, t_vect dir)
+{
+	t_cy	cy;
+	t_obj	pl;
+	t_hit	*point;
+	t_hit	*temp;
+
+	point = NULL;
+	cy = obj->cylinder;
+	pl.plane.nvec = cy.vec;
+	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, cy.h / 2));
+	pl.plane.rgb = cy.rgb;
+	temp = ft_plane(&pl, or, dir);
+	// replace_point(&point, temp, cy);
+	if (temp && pow(ft_vectdist(temp->point, cy.pos),2) <= pow(cy.h / 2, 2) + pow(cy.dia / 2, 2) && (!point || temp->dist < point->dist))
+		(free(point),point = temp);
+	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, -cy.h / 2));
+	temp = ft_plane(&pl, or, dir);
+	// replace_point(&point, temp, cy);
+	if (temp && pow(ft_vectdist(temp->point, cy.pos),2) <= pow(cy.h / 2, 2) + pow(cy.dia / 2, 2) && (!point || temp->dist < point->dist))
+		(free(point),point = temp);
+	temp = ft_inf_cylinder(obj, or, dir);
+	// replace_point(&point, temp, cy);
+	if (temp && pow(ft_vectdist(temp->point, cy.pos),2) <= pow(cy.h / 2, 2) + pow(cy.dia / 2, 2) && (!point || temp->dist < point->dist))
+		return (free(point),temp);
+	return point;
 }

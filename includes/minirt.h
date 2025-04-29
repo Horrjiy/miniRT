@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 16:23:43 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 17:12:54 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
-# define MOVE_SPEED 25
+# define MOVE_SPEED 0.5
 # define DIST 3
 
 # define PI 3.14159265358979323846264338327950288
