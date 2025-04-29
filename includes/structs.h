@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 16:24:01 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 19:28:50 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ typedef struct s_data
 	int all_surrnd[3]; // tracks camera ambient and light
 	char *str;         // A string; still overcomplicated
 	char		**scene;
+	double width; // projection plane height
+	double height; // projection plane width
 }				t_data;
 
 #endif
