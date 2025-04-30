@@ -3,39 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   hitpoint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:26:07 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 15:27:29 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:58:13 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_hit	*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d)
+bool	ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
+		t_hit *closest)
 {
 	t_obj	*obj;
-	t_hit	*point;
+	t_hit	point;
 	double	min_dist;
-	t_hit	*closest;
 
-	t_hit *(*g_intersects[shape_amount])(t_obj *, t_coords, t_vect) = {&ft_sphere, &ft_plane, &ft_cylinder};
-	closest = NULL;
+	bool (*g_intersects[shape_amount])(t_obj *, t_coords, t_vect,
+			t_hit *) = {&ft_sphere, &ft_plane, &ft_cylinder, &ft_cone};
 	min_dist = INFINITY;
 	obj = d->objects;
 	while (obj)
 	{
-		point = g_intersects[(int)obj->type](obj, or, dir);
-		if (point)
+		if (g_intersects[(int)obj->type](obj, or, dir, &point))
 		{
-			if (min_dist > point->dist)
+			if (min_dist > point.dist)
 			{
-				free(closest);
-				closest = point;
-				min_dist = point->dist;
+				*closest = point;
+				min_dist = point.dist;
 			}
 		}
 		obj = obj->next;
 	}
-	return (closest);
+	return (min_dist < INFINITY);
 }

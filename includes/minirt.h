@@ -72,7 +72,8 @@ t_coords		ft_convert_coords(t_data *data);
 void			ft_render(t_data *data);
 
 // gets the closest hit point of the line defined by origin and dir with any object
-t_hit			*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d);
+bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
+					t_hit *closest);
 
 // initializes the data
 bool			ft_init(t_data *data);
@@ -80,17 +81,17 @@ bool			ft_init(t_data *data);
 // checks for movement keys and sets vaues accordingly
 void			ft_keyfunc(void *param);
 
-// resizes the image if the window is resized
-void			ft_resizefunc(int32_t width, int32_t height, void *param);
-
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);
 
 // -------- objects --------- //
 
-t_hit			*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
-t_hit			*ft_plane(t_obj *obj, t_vect supv, t_vect dirv);
-t_hit			*ft_cylinder(t_obj *obj, t_coords or, t_vect dir);
+double			ft_solve_quad_eq(double *abc);
+
+bool			ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
+bool			ft_plane(t_obj *obj, t_vect supv, t_vect dirv, t_hit *point);
+bool			ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
+bool			ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
 
 // -------- light --------- //
 
