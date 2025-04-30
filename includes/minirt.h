@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 18:34:47 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:24:47 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@
 // # define W_WIDTH 1500
 // # define W_HEIGTH 900
 # define W_WIDTH 1280.0
+// # define W_WIDTH 640.0
+// # define W_WIDTH 320.0
 # define W_HEIGTH 720.0
+// # define W_HEIGTH 360.0
+// # define W_HEIGTH 180.0
 # define V_WIDTH 2.0
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
@@ -53,6 +57,7 @@ void			init_camera(t_data *data, char *line);
 void			init_sphere(t_data *data, char *line);
 void			init_plane(t_data *data, char *line);
 void			init_cylinder(t_data *data, char *line);
+void			init_cone(t_data *data, char *line);
 void			split_line(t_data *data, char **line);
 void			ft_node_addback(t_obj **head, t_obj *node);
 t_obj			*init_object_node(int type, t_data *data);

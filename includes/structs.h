@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 19:28:50 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/30 16:16:12 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,15 @@ typedef struct s_cylinder
 	t_rgb rgb;    // color
 }				t_cy;
 
+typedef struct s_cone
+{
+	t_coords pos; // position of the top
+	t_coords vec; // direction vector of the line in the center
+	double dia;   // diameter at the widest point
+	double h;     // height
+	t_rgb rgb;    // color
+}				t_co;
+
 // ~-~-~-~-~-~-~ management ~-~-~-~-~-~-~ //
 
 typedef enum e_status
@@ -90,6 +99,7 @@ typedef enum e_status
 	sphere,
 	plane,
 	cylinder,
+	cone,
 	shape_amount
 	// not sure if this is needed will maybe get removed in the future
 }				t_status;
@@ -103,6 +113,7 @@ typedef struct s_scene_objects
 		t_sp	sphere;
 		t_pl	plane;
 		t_cy	cylinder;
+		t_co 	cone;
 	};
 }				t_obj;
 
