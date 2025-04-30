@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 18:47:09 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:54:58 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	init_identifier(t_data *data, char **scene, char *line, int i)
 			init_plane(data, line);
 		else if (!ft_strncmp(line, "cy", 2) && ft_iswhtspc(line[2]))
 			init_cylinder(data, line);
+		else if (!ft_strncmp(line, "tr", 2) && ft_iswhtspc(line[2]))
+			init_triangle(data, line);
 		else
 			ft_parserr(data, 202);
 		i++;

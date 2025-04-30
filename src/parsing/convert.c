@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:09:29 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 19:19:07 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/29 19:43:49 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ size_t	ft_comlen(const char *s)
 static bool	check_input(char *temp, int minus, int period, int comma)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!ft_isdigit(temp[i]) && temp[i++] != '-')
 		return (false);
-	if(!ft_isdigit(temp[ft_strlen(temp) - 1]))
+	if (!ft_isdigit(temp[ft_strlen(temp) - 1]))
 		return (false);
 	while (temp[i])
 	{
-		if ((!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '-'
-				&& temp[i] != '.'))
+		if (!ft_isdigit(temp[i]) && temp[i] != ',' && temp[i] != '.'
+			&& temp[i] != '-')
+			return (false);
+		if (temp[i] == '-' && !ft_iswhtspc(temp[i - 1]) && temp[i - 1] != ',')
 			return (false);
 		if (temp[i] == ',')
 			comma--;
@@ -48,7 +50,7 @@ static bool	check_input(char *temp, int minus, int period, int comma)
 	}
 	if (minus < 0 || comma != 0 || period < 0)
 		return (false);
-	return(true);
+	return (true);
 }
 
 double	ft_convert_double(t_data *data)

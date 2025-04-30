@@ -6,33 +6,29 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:12:07 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 15:44:02 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 18:53:48 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_hit	*ft_plane(t_obj *obj, t_vect supv, t_vect dirv)
+bool	ft_plane(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
 {
-	t_hit	*htp;
 	t_pl	plane;
 	double	t;
 	double	temp;
 	
-	htp = malloc(sizeof(t_hit));
-	if (!htp)
-		return (NULL);
 	plane = obj->plane;
 	htp->obj = obj;
 	htp->normal = plane.nvec;
 	htp->col = ft_rgbtod(plane.rgb);
 	temp = ft_vectdot(dirv, plane.nvec);
 	if(temp == 0)
-		return(free(htp), NULL);
+		return(false);
 	t = -((ft_vectdot(ft_vectsub(supv, plane.pos), plane.nvec)) / temp);
 	htp->dist = t;
-	htp->point = ft_vectadd(supv, ft_vectmult(dirv, t));
 	if(t < 0)
-		return(NULL);
-	return (htp);
+		return(false);
+	htp->point = ft_vectadd(supv, ft_vectmult(dirv, t));
+	return (true);
 }

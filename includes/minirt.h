@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 18:34:47 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/30 17:36:19 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 // # define W_WIDTH 1500
 // # define W_HEIGTH 900
-# define W_WIDTH 1280.0
-# define W_HEIGTH 720.0
+# define W_WIDTH 1280
+# define W_HEIGHT 720
 # define V_WIDTH 2.0
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
@@ -41,6 +41,10 @@
 
 # define PI 3.14159265358979323846264338327950288
 # define PI_2 1.57079632679489661923132169163975144
+
+# define COORD_V 0
+# define COORD_W 1
+# define COORD_U 2
 
 // ~-~-~-~-~-~-~-~-~  functions  ~-~-~-~-~-~-~-~-~ //
 
@@ -53,6 +57,7 @@ void			init_camera(t_data *data, char *line);
 void			init_sphere(t_data *data, char *line);
 void			init_plane(t_data *data, char *line);
 void			init_cylinder(t_data *data, char *line);
+void			init_triangle(t_data *data, char *line);
 void			split_line(t_data *data, char **line);
 void			ft_node_addback(t_obj **head, t_obj *node);
 t_obj			*init_object_node(int type, t_data *data);
@@ -91,6 +96,7 @@ void			esc(mlx_key_data_t keydata, void *param);
 t_hit			*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
 t_hit			*ft_plane(t_obj *obj, t_vect supv, t_vect dirv);
 t_hit			*ft_cylinder(t_obj *obj, t_coords or, t_vect dir);
+t_hit			*ft_triangle(t_obj *obj, t_vect supv, t_vect dirv);
 
 // -------- light --------- //
 

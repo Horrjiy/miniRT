@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 19:28:50 by tleister         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:49:28 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ typedef struct s_cylinder
 	t_rgb rgb;    // color
 }				t_cy;
 
+typedef struct s_cone
+{
+	t_coords pos; // position of the corner
+	t_coords vec; // direction vector of the line in the center
+	double dia;   // diameter
+	double h;     // height
+	t_rgb rgb;    // color
+}				t_co;
+
+typedef struct s_triangle
+{
+	t_coords	pt_a;
+	t_coords	pt_b;
+	t_coords	pt_c;
+	t_rgb		rgb;
+}				t_tr;
+
 // ~-~-~-~-~-~-~ management ~-~-~-~-~-~-~ //
 
 typedef enum e_status
@@ -90,8 +107,9 @@ typedef enum e_status
 	sphere,
 	plane,
 	cylinder,
+	cone,
+	triangle,
 	shape_amount
-	// not sure if this is needed will maybe get removed in the future
 }				t_status;
 
 typedef struct s_scene_objects
@@ -103,9 +121,10 @@ typedef struct s_scene_objects
 		t_sp	sphere;
 		t_pl	plane;
 		t_cy	cylinder;
+		t_co	cone;
+		t_tr	triang;
 	};
 }				t_obj;
-
 
 typedef struct s_hitpoint
 {
@@ -116,7 +135,6 @@ typedef struct s_hitpoint
 	double dist;    // the distance between cam and object
 }				t_hit;
 
-// please do not put thing in there that are just needed at one point in the code
 typedef struct s_data
 {
 	mlx_t *mlx;        // mlx window
@@ -126,9 +144,9 @@ typedef struct s_data
 	t_a amb;           // the ambient light
 	t_l light;         // a light source
 	int all_surrnd[3]; // tracks camera ambient and light
-	char *str;         // A string; still overcomplicated
-	char		**scene;
-	double width; // projection plane height
+	char *str;         // A string
+	char **scene;
+	double width;  // projection plane height
 	double height; // projection plane width
 }				t_data;
 
