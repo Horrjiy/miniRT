@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 17:57:19 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 19:15:15 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,19 @@ void	ft_render(t_data *data)
 {
 	int		y;
 	int		x;
-	t_hit	*hit;
- 
+	t_hit	hit;
+
 	y = 0;
 	while (y < (int)data->img->height)
 	{
 		x = 0;
 		while (x < (int)data->img->width)
 		{
-			g_n[0] = x;
-			g_n[1] = y;
-			hit = ft_get_closest_hitpoint(data->cam.pos, ft_get_camera_vect(x,
-						y, data), data);
-			if (hit)
+			if (ft_get_closest_hitpoint(data->cam.pos, ft_get_camera_vect(x, y,
+						data), data, &hit))
 			{
-				hit->col = ft_lighting(hit, data);
-				my_put_pixel(data->img, x, y, ft_rgba(hit->col));
-				free(hit);
+				hit.col = ft_lighting(&hit, data);
+				my_put_pixel(data->img, x, y, ft_rgba(hit.col));
 			}
 			else
 				my_put_pixel(data->img, x, y, (255 - (255

@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 17:36:19 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 19:39:59 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 // # define W_WIDTH 1500
 // # define W_HEIGTH 900
+// # define W_WIDTH 320
+// # define W_HEIGHT 180
 # define W_WIDTH 1280
 # define W_HEIGHT 720
 # define V_WIDTH 2.0
@@ -77,7 +79,8 @@ t_coords		ft_convert_coords(t_data *data);
 void			ft_render(t_data *data);
 
 // gets the closest hit point of the line defined by origin and dir with any object
-t_hit			*ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d);
+bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
+					t_hit *closest);
 
 // initializes the data
 bool			ft_init(t_data *data);
@@ -85,18 +88,16 @@ bool			ft_init(t_data *data);
 // checks for movement keys and sets vaues accordingly
 void			ft_keyfunc(void *param);
 
-// resizes the image if the window is resized
-void			ft_resizefunc(int32_t width, int32_t height, void *param);
-
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);
 
 // -------- objects --------- //
 
-t_hit			*ft_sphere(t_obj *obj, t_coords or, t_vect dir);
-t_hit			*ft_plane(t_obj *obj, t_vect supv, t_vect dirv);
-t_hit			*ft_cylinder(t_obj *obj, t_coords or, t_vect dir);
-t_hit			*ft_triangle(t_obj *obj, t_vect supv, t_vect dirv);
+bool			ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
+bool			ft_plane(t_obj *obj, t_vect supv, t_vect dirv, t_hit *point);
+bool			ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
+bool			ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
+bool			ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *point);
 
 // -------- light --------- //
 
@@ -115,6 +116,8 @@ double			ft_map(int num, double oldmax, double newmin, double newmax);
 // puts only a pixel if x/y are inside the image
 void			my_put_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 					uint32_t color);
+
+double			ft_solve_quad_eq(double *abc);
 
 // ----- Vector functions ----- //
 

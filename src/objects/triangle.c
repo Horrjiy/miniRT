@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:27:00 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 18:44:39 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/04/30 19:21:45 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static bool	ft_isontriangle(t_hit *htp, t_tr trian)
 	tvec[2] = ft_vectsub(htp->point, trian.pt_a);
 	denom = ((ft_vectdot(tvec[0], tvec[0]) * ft_vectdot(tvec[1], tvec[1]))
 			- (ft_vectdot(tvec[1], tvec[0]) * ft_vectdot(tvec[1], tvec[0])));
+	if(denom <= 0.0)
+		return (false);
 	barycent[COORD_V] = ((ft_vectdot(tvec[1], tvec[1]) * ft_vectdot(tvec[2],
 					tvec[0])) - (ft_vectdot(tvec[1], tvec[0])
 				* ft_vectdot(tvec[2], tvec[1]))) / denom;
@@ -37,7 +39,7 @@ static bool	ft_isontriangle(t_hit *htp, t_tr trian)
 	return (false);
 }
 
-bool	*ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
+bool	ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
 {
 	t_tr	trian;
 	double	t;
