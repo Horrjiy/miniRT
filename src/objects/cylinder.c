@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:08:04 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:37:26 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,29 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 							ft_vectsub(p->point, obj->cylinder.pos))))));
 }
 
+static bool	check_hit(t_hit *point, t_hit temp, t_cy cy, bool hit)
+{
+	if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2) + pow(cy.dia
+			/ 2, 2) && (!hit || temp.dist < point->dist))
+	{
+		*point = temp;
+		return (true);
+	}
+	return (false);
+}
+
 // try infinite cylinder for now
 bool	ft_inf_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 {
-	t_cy	cy;
+	t_vect	oc;
 	double	abc[3];
 
-	cy = obj->cylinder;
-	abc[0] = pow(ft_vectdot(cy.vec, dir), 2) - ft_vectdot(dir, dir);
-	abc[1] = 2 * ft_vectdot(ft_vectsub(or, cy.pos), cy.vec) * ft_vectdot(cy.vec,
-			dir) - 2 * (ft_vectdot(ft_vectsub(or, cy.pos), dir));
-	abc[2] = pow(cy.dia / 2, 2) + pow(ft_vectdot(ft_vectsub(or, cy.pos),
-				cy.vec), 2) - ft_vectdot(ft_vectsub(or, cy.pos), ft_vectsub(or,
-				cy.pos));
+	oc = ft_vectsub(or, obj->cylinder.pos);
+	abc[0] = pow(ft_vectdot(obj->cylinder.vec, dir), 2) - 1;
+	abc[1] = 2 * ft_vectdot(oc, obj->cylinder.vec)
+		* ft_vectdot(obj->cylinder.vec, dir) - 2 * (ft_vectdot(oc, dir));
+	abc[2] = pow(obj->cylinder.dia / 2, 2) + pow(ft_vectdot(oc,
+				obj->cylinder.vec), 2) - ft_vectdot(oc, oc);
 	point->dist = ft_solve_quad_eq(abc);
 	if (point->dist < 0)
 		return (false);
@@ -44,28 +54,20 @@ bool	ft_inf_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 
 bool	ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 {
-	t_cy	cy;
 	t_obj	pl;
 	t_hit	temp;
 	bool	hit;
 
 	hit = false;
-	cy = obj->cylinder;
-	pl.plane.nvec = cy.vec;
-	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, cy.h / 2));
-	pl.plane.rgb = cy.rgb;
+	pl.plane.nvec = obj->cylinder.vec;
+	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec, obj->cylinder.h / 2));
+	pl.plane.rgb = obj->cylinder.rgb;
 	if (ft_plane(&pl, or, dir, &temp))
-		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
-			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
-	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, -cy.h / 2));
+		hit = check_hit(point, temp, obj->cylinder, hit);
+	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec, -obj->cylinder.h / 2));
 	if (ft_plane(&pl, or, dir, &temp))
-		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
-			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
+		hit = check_hit(point, temp, obj->cylinder, hit);
 	if (ft_inf_cylinder(obj, or, dir, &temp))
-		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
-			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
+		hit = check_hit(point, temp, obj->cylinder, hit);
 	return (hit);
 }

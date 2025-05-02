@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:17:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:01:19 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:52:58 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 	tangential = ft_vectcross(obj->cone.vec, ft_vectsub(obj->cone.pos,
 				p->point));
 	p->normal = ft_vectcross(tangential, ft_vectsub(obj->cone.pos, p->point));
+	if (ft_vectdot(p->normal, dir) < 0)
+		p->normal = ft_vectmult(p->normal, -1);
 }
 
-bool ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
+bool	ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 {
 	t_co	co;
 	t_vect	c;
@@ -53,19 +55,3 @@ bool ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 	set_hit(point, or, dir, obj);
 	return (true);
 }
-
-// bool ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
-// {
-// 	t_hit	*temp;
-// 	t_obj	pl;
-
-// 	point = NULL;
-// 	pl.plane.nvec = obj->cone.vec;
-// 	pl.plane.pos = ft_vectadd(obj->cone.pos, ft_vectmult(obj->cone.vec,
-// 				obj->cone.h));
-// 	pl.plane.rgb = obj->cone.rgb;
-// 	if(ft_plane(&pl, or, dir, temp));
-// 		if (pow(ft_vectdist(temp->point, pl.plane.pos), 2) <= pow(obj->cone.h, 2) + pow(obj->cone.dia / 2, 2))
-// 			point = temp;
-	
-// }

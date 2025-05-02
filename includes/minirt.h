@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 19:24:47 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:19:52 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_b_rgb			ft_rgbtod(t_rgb col);
 uint32_t		ft_rgba(t_b_rgb col);
 
 // calculates the color for lit points
-t_b_rgb			ft_lighting(t_hit *hit, t_data *d);
+t_b_rgb			ft_lighting(t_hit *hit, t_data *d, t_vect cam_vect);
 
 // maps a number within a range into another range
 double			ft_map(int num, double oldmax, double newmin, double newmax);

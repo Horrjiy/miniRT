@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:58:45 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 18:59:27 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:48:56 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool ft_sphere(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 	double	abc[3];
 
 	sp = obj->sphere;
-	abc[0] = ft_vectdot(dir, dir); // = 1
+	abc[0] = 1;
 	abc[1] = 2 * ft_vectdot(dir, or) - 2 * ft_vectdot(dir, sp.pos);
 	abc[2] = ft_vectdot(or, or) + ft_vectdot(sp.pos, sp.pos) - 2 * ft_vectdot(or,
 			sp.pos) - (sp.dia / 2) * (sp.dia / 2);

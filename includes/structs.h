@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 16:16:12 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:45:29 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
+	t_vect rigth; // vector that faces right relative to screen
+	t_vect up;    // vector that faces up relative to screen
 	t_coords pos; // position of the view point
 	t_coords vec; // normalized vector to the direction the camera is looking
 	double fov;   // Horizontal field of view
@@ -113,10 +115,9 @@ typedef struct s_scene_objects
 		t_sp	sphere;
 		t_pl	plane;
 		t_cy	cylinder;
-		t_co 	cone;
+		t_co	cone;
 	};
 }				t_obj;
-
 
 typedef struct s_hitpoint
 {
@@ -139,7 +140,7 @@ typedef struct s_data
 	int all_surrnd[3]; // tracks camera ambient and light
 	char *str;         // A string; still overcomplicated
 	char		**scene;
-	double width; // projection plane height
+	double width;  // projection plane height
 	double height; // projection plane width
 }				t_data;
 
