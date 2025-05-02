@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.c                                               :+:      :+:    :+:   */
+/*   random.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 22:27:17 by tleister         ###   ########.fr       */
+/*   Created: 2025/05/02 23:14:38 by tleister          #+#    #+#             */
+/*   Updated: 2025/05/02 23:52:07 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static void	ft_set_cam_vect(t_data *d)
+uint32_t	xorshift32(uint32_t *state)
 {
-	d->cam.up.x = 0;
-	d->cam.up.y = 1;
-	d->cam.up.z = 0;
-	d->cam.rigth = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.up));
-	d->cam.up = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.rigth));
+	*state ^= *state << 21;         
+	*state ^= *state >> 28;         
+	*state ^= *state << 4; 
+	*state *= 1231238787231287; 
+	return (*state);
 }
 
-void	ft_render(void *param)
+int	get_rand(void)
 {
-	static int		i = 0;
-	t_data	*d;
+	static uint32_t	state = 0x61707865;
 
-	d = (t_data *)param;
-	ft_set_cam_vect(d);
-	ft_printf("\033[?25l");
-	if (i < 100)
-	{
-		ft_printf("\033[2K\r %d / 100", i + 1);
-		ft_loop_pixel(d, i);
-		i++;
-	}
+	return (xorshift32(&state));
 }

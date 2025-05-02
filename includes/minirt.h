@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 15:43:28 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 23:43:42 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
 
 # define MOVE_SPEED 0.5
-# define DIST 3
+# define DIST 3.0
 
 # define PI 3.14159265358979323846264338327950288
 # define PI_2 1.57079632679489661923132169163975144
@@ -88,6 +88,9 @@ bool			ft_init(t_data *data);
 
 // checks for movement keys and sets vaues accordingly
 void			ft_keyfunc(void *param);
+
+// calculates a random number
+int				get_rand(void);
 
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);

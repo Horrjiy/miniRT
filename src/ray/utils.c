@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:29:26 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 15:37:27 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 22:18:21 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	ft_map(int num, double omax, double newmin, double newmax)
 
 void	my_put_pixel(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color)
 {
-	if (x > 0 && x < image->width && y > 0 && y < image->height)
+	if (x >= 0 && x < image->width && y >= 0 && y < image->height)
 		mlx_put_pixel(image, x, y, color);
 }
 

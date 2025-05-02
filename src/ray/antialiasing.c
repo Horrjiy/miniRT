@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:56:55 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 17:16:25 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 23:58:51 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ static t_vect	ft_get_camera_vect(int x, int y, t_data *d, int amount)
 {
 	t_vect	up;
 	t_vect	rigth;
+	double	dist;
 
-	amount = ft_map(amount, 100, -50, 50);
+	dist = DIST;
+	if(amount)
+		dist = dist * (1.0 + (double)get_rand() / ((double)UINT32_MAX * 200.0));
+	// static int tr = 0;
+	// if(tr != amount);
+	// {printf("DIST: %g, dist: %g map: %g -- %d\n", DIST, dist, ft_map(amount, 100, -100, 100), amount);tr = amount;}
 	rigth = ft_vectmult(d->cam.rigth, ft_map(x, W_WIDTH, -d->width, d->width));
-	rigth = ft_vectmult(rigth, 1.0 + (double)amount / 1000.0);
 	up = ft_vectmult(d->cam.up, ft_map(y, W_HEIGTH, -d->height, d->height));
-	// up = ft_vectmult(up, 1.0 + (double)amount / 1000.0);
-	return (ft_vectnorm(ft_vectadd(ft_vectmult(d->cam.vec, DIST), ft_vectadd(up,
+	return (ft_vectnorm(ft_vectadd(ft_vectmult(d->cam.vec, dist), ft_vectadd(up,
 					rigth))));
 }
 
@@ -53,10 +57,10 @@ void	ft_loop_pixel(t_data *d, int am)
 	t_vect		vec;
 
 	y = 0;
-	while (y < (int)d->img->height)
+	while (y < W_HEIGTH)
 	{
 		x = 0;
-		while (x < (int)d->img->width)
+		while (x < W_WIDTH)
 		{
 			vec = ft_get_camera_vect(x, y, d, am);
 			if (ft_get_closest_hitpoint(d->cam.pos, vec, d, &hit))
@@ -64,7 +68,7 @@ void	ft_loop_pixel(t_data *d, int am)
 			else
 				col = 255 - (255 * d->amb.amb_light);
 			if (am > 0)
-				col = get_col(col, &d->img->pixels[(y * W_WIDTH + x) * 4], am);
+				col = get_col(col, &d->img->pixels[(y * d->img->width + x) * 4], am);
 			my_put_pixel(d->img, x, y, col);
 			x++;
 		}
