@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 15:29:24 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 15:51:22 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	freearr(char **strarr)
 	freen(strarr);
 }
 
-void freen(char **str)
+void	freen(char **str)
 {
 	free(*str);
 	*str = NULL;
@@ -33,8 +33,9 @@ void freen(char **str)
 
 void	free_data(t_data *data)
 {
-	void *next = NULL;
+	void	*next;
 
+	next = NULL;
 	if (data->str)
 		freen(&(data->str));
 	if (data->scene)
@@ -50,4 +51,5 @@ void	free_data(t_data *data)
 		mlx_delete_image(data->mlx, data->img);
 		mlx_terminate(data->mlx);
 	}
+	ft_printf("\033[?25l");
 }

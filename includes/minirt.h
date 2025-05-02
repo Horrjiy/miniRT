@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 13:19:52 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:43:28 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 
 // # define W_WIDTH 1500
 // # define W_HEIGTH 900
-# define W_WIDTH 1280.0
+# define W_WIDTH 1280
 // # define W_WIDTH 640.0
 // # define W_WIDTH 320.0
-# define W_HEIGTH 720.0
+# define W_HEIGTH 720
 // # define W_HEIGTH 360.0
 // # define W_HEIGTH 180.0
 # define V_WIDTH 2.0
@@ -73,8 +73,11 @@ t_coords		ft_convert_coords(t_data *data);
 
 // ----- rendering ----- //
 
+// calls ft_loop_pixel more often for antialiasing
+void			ft_render(void *param);
+
 // goes througth all pixels of the window and sets them correctly
-void			ft_render(t_data *data);
+void			ft_loop_pixel(t_data *d, int amount);
 
 // gets the closest hit point of the line defined by origin and dir with any object
 bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
@@ -107,7 +110,7 @@ t_b_rgb			ft_rgbtod(t_rgb col);
 uint32_t		ft_rgba(t_b_rgb col);
 
 // calculates the color for lit points
-t_b_rgb			ft_lighting(t_hit *hit, t_data *d, t_vect cam_vect);
+uint32_t		ft_lighting(t_hit *hit, t_data *d, t_vect cam_vect);
 
 // maps a number within a range into another range
 double			ft_map(int num, double oldmax, double newmin, double newmax);

@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:23:01 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 13:41:45 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:13:18 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_b_rgb	phong_lighting(t_hit *hit, t_vect light_dir, t_data *d,
 	return (hit->col);
 }
 
-t_b_rgb	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
+uint32_t	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
 {
 	t_vect	dir;
 	t_hit	light_hit;
@@ -79,6 +79,6 @@ t_b_rgb	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
 	clip_light(&hit->col);
 	if (ft_get_closest_hitpoint(ft_vectadd(hit->point, ft_vectmult(dir, 0.001)),
 			dir, d, &light_hit))
-		return (ft_get_lightcolor(hit->col, d->amb.amb_light));
-	return (phong_lighting(hit, dir, d, pixelv));
+		return (ft_rgba(ft_get_lightcolor(hit->col, d->amb.amb_light)));
+	return (ft_rgba(phong_lighting(hit, dir, d, pixelv)));
 }
