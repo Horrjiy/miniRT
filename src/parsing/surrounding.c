@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   surrounding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:37:40 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 18:47:01 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:13:25 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_light(t_data *data, char *line)
 	data->light.bright = ft_convert_double(data);
 	if (data->light.bright > 1.0 || data->light.bright < 0.0)
 		ft_parserr(data, 205);
+	freen(&data->str);
 	split_line(data, &line);
 	data->light.rgb = ft_convert_rgb(data);
 	freen(&data->str);
