@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:27:00 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 19:21:45 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:22:24 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	ft_isontriangle(t_hit *htp, t_tr trian)
 	tvec[2] = ft_vectsub(htp->point, trian.pt_a);
 	denom = ((ft_vectdot(tvec[0], tvec[0]) * ft_vectdot(tvec[1], tvec[1]))
 			- (ft_vectdot(tvec[1], tvec[0]) * ft_vectdot(tvec[1], tvec[0])));
-	if(denom <= 0.0)
+	if (denom <= 0.0)
 		return (false);
 	barycent[COORD_V] = ((ft_vectdot(tvec[1], tvec[1]) * ft_vectdot(tvec[2],
 					tvec[0])) - (ft_vectdot(tvec[1], tvec[0])
@@ -32,10 +32,9 @@ static bool	ft_isontriangle(t_hit *htp, t_tr trian)
 					tvec[1])) - (ft_vectdot(tvec[1], tvec[0])
 				* ft_vectdot(tvec[2], tvec[0]))) / denom;
 	barycent[COORD_U] = 1 - barycent[COORD_V] - barycent[COORD_W];
-	if (barycent[COORD_U] + barycent[COORD_V] + barycent[COORD_W] == 1)
-		if (barycent[COORD_U] >= 0 && barycent[COORD_V] >= 0
-			&& barycent[COORD_W] >= 0)
-			return (true);
+	if (barycent[COORD_U] >= 0 && barycent[COORD_V] >= 0
+		&& barycent[COORD_W] >= 0)
+		return (true);
 	return (false);
 }
 
@@ -48,7 +47,7 @@ bool	ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
 	trian = obj->triang;
 	htp->obj = obj;
 	htp->normal = ft_vectcross(ft_vectsub(trian.pt_b, trian.pt_a),
-		ft_vectsub(trian.pt_c, trian.pt_a));
+			ft_vectsub(trian.pt_c, trian.pt_a));
 	htp->col = ft_rgbtod(trian.rgb);
 	temp = ft_vectdot(dirv, htp->normal);
 	if (temp == 0)

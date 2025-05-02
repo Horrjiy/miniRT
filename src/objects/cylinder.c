@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:08:04 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:29:23 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,32 @@ bool	ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, cy.h / 2));
 	pl.plane.rgb = cy.rgb;
 	if (ft_plane(&pl, or, dir, &temp))
+	{
 		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
 			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
+		{
+			*point = temp;
+			hit = true;
+		}
+	}
 	pl.plane.pos = ft_vectadd(cy.pos, ft_vectmult(cy.vec, -cy.h / 2));
 	if (ft_plane(&pl, or, dir, &temp))
+	{
 		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
 			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
+		{
+			*point = temp;
+			hit = true;
+		}
+	}
 	if (ft_inf_cylinder(obj, or, dir, &temp))
+	{
 		if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2)
 			+ pow(cy.dia / 2, 2) && (!hit || temp.dist < point->dist))
-			(*point = temp, hit = true);
+		{
+			*point = temp;
+			hit = true;
+		}
+	}
 	return (hit);
 }

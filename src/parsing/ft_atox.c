@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:26 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 18:09:02 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:25:48 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static double	ft_fraction(int i, char *str)
 		divisor *= 10;
 		i++;
 	}
-	return(frac);
+	return (frac);
 }
 
 double	ft_atodb(char *str)
 {
-	int		i;
+	int			i;
 	long double	number;
-	int		sign;
+	int			sign;
 
 	number = 0.0;
 	sign = 1;
@@ -55,13 +55,11 @@ double	ft_atodb(char *str)
 	return (number * sign);
 }
 
-
-
-int ft_safe_atoi(char *str, t_data *data)
+int	ft_safe_atoi(char *str, t_data *data)
 {
-	int i;
-	long long number;
-	int sign;
+	int			i;
+	long long	number;
+	int			sign;
 
 	number = 0;
 	sign = 1;
@@ -79,17 +77,17 @@ int ft_safe_atoi(char *str, t_data *data)
 		number += str[i] - '0';
 		i++;
 	}
-	if(number > 2147483647 || number < -2147483648 || ft_comlen(str) > 11)
+	if (number > 2147483647 || number < -2147483648 || ft_comlen(str) > 11)
 		ft_parserr(data, 204);
 	return ((int)(number * sign));
 }
 
-unsigned char ft_safe_atouc(char *str, t_data *data)
+unsigned char	ft_safe_atouc(char *str, t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = ft_safe_atoi(str, data);
 	if (i < 0 || i > 255)
 		ft_parserr(data, 205);
-	return((unsigned char)i);
+	return ((unsigned char)i);
 }

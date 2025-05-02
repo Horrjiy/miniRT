@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:43:03 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 11:14:46 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:29:47 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	freearr(char **strarr)
 	free(strarr);
 }
 
-void freen(char **str)
+void	freen(char **str)
 {
 	free(*str);
 	*str = NULL;
@@ -33,8 +33,9 @@ void freen(char **str)
 
 void	free_data(t_data *data)
 {
-	void *next = NULL;
+	void	*next;
 
+	next = NULL;
 	if (data->str)
 		freen(&(data->str));
 	if (data->scene)

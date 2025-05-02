@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hitpoint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:26:07 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:19:20 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:25:29 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 bool	ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *closest)
 {
 	(void)obj;
-	(void)or;
+	(void) or ;
 	(void)dir;
 	(void)closest;
-	return(false);
+	return (false);
 }
 
 bool	ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
@@ -29,7 +29,8 @@ bool	ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 	double	min_dist;
 
 	bool (*g_intersects[shape_amount])(t_obj *, t_coords, t_vect,
-			t_hit *) = {&ft_sphere, &ft_plane, &ft_cylinder, &ft_cone, &ft_triangle};
+		t_hit *) = {&ft_sphere, &ft_plane, &ft_cylinder, &ft_cone,
+	&ft_triangle};
 	min_dist = INFINITY;
 	obj = d->objects;
 	while (obj)

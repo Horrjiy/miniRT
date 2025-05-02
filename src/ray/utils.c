@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:29:26 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:17:21 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:23:48 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_b_rgb	ft_rgbtod(t_rgb col)
 double	ft_solve_quad_eq(double *abc)
 {
 	double	d;
-	double t1;
-	double t2;
+	double	t1;
+	double	t2;
 	double	sqrt_disc;
 
 	d = abc[1] * abc[1] - 4 * abc[0] * abc[2];
@@ -54,7 +54,7 @@ double	ft_solve_quad_eq(double *abc)
 		return (-1);
 	t1 = (-abc[1] - sqrt_disc) / (2 * abc[0]);
 	t2 = (-abc[1] + sqrt_disc) / (2 * abc[0]);
-	if(t1 < t2 && t1 > 0)
-		return(t1);
+	if (t1 < t2 && t1 > 0)
+		return (t1);
 	return (t2);
 }

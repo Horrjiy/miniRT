@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 19:15:15 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:24:43 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-int				g_n[2];
 
 static t_vect	ft_get_camera_vect(int x, int y, t_data *d)
 {
@@ -32,9 +30,10 @@ static t_vect	ft_get_camera_vect(int x, int y, t_data *d)
 
 static void	ft_progressbar(int x, int y)
 {
-	static int all_pix = W_WIDTH * W_HEIGHT;
-	if(x != (W_WIDTH - 1))
-		return;
+	static int	all_pix = W_WIDTH * W_HEIGHT;
+
+	if (x != (W_WIDTH - 1))
+		return ;
 	printf("\x1b[A\x1b[2K");
 	printf("Rendering progress:\t");
 	printf("%.2f%%", (double)(W_WIDTH * y + x) / all_pix * 100);
@@ -61,10 +60,10 @@ void	ft_render(t_data *data)
 			}
 			else
 				my_put_pixel(data->img, x, y, (255 - (255
-								* data->amb.amb_light)));
+							* data->amb.amb_light)));
 			ft_progressbar(x, y);
 			x++;
 		}
-		y++;	
+		y++;
 	}
 }
