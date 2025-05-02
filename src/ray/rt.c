@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 18:59:13 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:48:19 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,43 @@ static t_vect	ft_get_camera_vect(int x, int y, t_data *d)
 	t_vect	up;
 	t_vect	rigth;
 
-	up.x = 0;
-	up.y = 1;
-	up.z = 0;
-	rigth = ft_vectnorm(ft_vectcross(d->cam.vec, up));
-	up = ft_vectnorm(ft_vectcross(d->cam.vec, rigth));
-	rigth = ft_vectmult(rigth, ft_map(x, W_WIDTH, -d->width, d->width));
-	up = ft_vectmult(up, ft_map(y, W_HEIGTH, -d->height, d->height));
+	rigth = ft_vectmult(d->cam.rigth, ft_map(x, W_WIDTH, -d->width, d->width));
+	up = ft_vectmult(d->cam.up, ft_map(y, W_HEIGTH, -d->height, d->height));
 	return (ft_vectnorm(ft_vectadd(ft_vectmult(d->cam.vec, DIST), ft_vectadd(up,
 					rigth))));
 }
 
-void	ft_render(t_data *data)
+static	void ft_set_cam_vect(t_data *d)
+{
+	d->cam.up.x = 0;
+	d->cam.up.y = 1;
+	d->cam.up.z = 0;
+	d->cam.rigth = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.up));
+	d->cam.up = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.rigth));
+}
+
+void	ft_render(t_data *d)
 {
 	int		y;
 	int		x;
 	t_hit	hit;
+	t_vect	vec;
 
 	y = 0;
-	while (y < (int)data->img->height)
+	ft_set_cam_vect(d);
+	while (y < (int)d->img->height)
 	{
 		x = 0;
-		while (x < (int)data->img->width)
+		while (x < (int)d->img->width)
 		{
-			if (ft_get_closest_hitpoint(data->cam.pos, ft_get_camera_vect(x, y,
-						data), data, &hit))
+			vec = ft_get_camera_vect(x, y, d);
+			if (ft_get_closest_hitpoint(d->cam.pos, vec, d, &hit))
 			{
-				hit.col = ft_lighting(&hit, data);
-				my_put_pixel(data->img, x, y, ft_rgba(hit.col));
+				hit.col = ft_lighting(&hit, d, vec);
+				my_put_pixel(d->img, x, y, ft_rgba(hit.col));
 			}
 			else
-				my_put_pixel(data->img, x, y, (255 - (255
-							* data->amb.amb_light)));
+				my_put_pixel(d->img, x, y, (255 - (255 * d->amb.amb_light)));
 			x++;
 		}
 		y++;
