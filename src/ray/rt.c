@@ -6,32 +6,24 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 22:27:17 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:31:18 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static void	ft_set_cam_vect(t_data *d)
-{
-	d->cam.up.x = 0;
-	d->cam.up.y = 1;
-	d->cam.up.z = 0;
-	d->cam.rigth = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.up));
-	d->cam.up = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.rigth));
-}
-
 void	ft_render(void *param)
 {
-	static int		i = 0;
-	t_data	*d;
-
+	static int	i = 0;
+	static bool antialiasing = false;
+	t_data		*d;
 	d = (t_data *)param;
-	ft_set_cam_vect(d);
+	if(mlx_is_key_down(d->mlx, MLX_KEY_SPACE))
+	antialiasing = !antialiasing;
 	ft_printf("\033[?25l");
-	if (i < 100)
+	if (antialiasing || i == 0)
 	{
-		ft_printf("\033[2K\r %d / 100", i + 1);
+		ft_printf("\033[2K\r %d samples", i + 1);
 		ft_loop_pixel(d, i);
 		i++;
 	}

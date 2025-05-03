@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:56:55 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 23:58:51 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:23:08 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static t_vect	ft_get_camera_vect(int x, int y, t_data *d, int amount)
 {
 	t_vect	up;
-	t_vect	rigth;
+	t_vect	right;
 	double	dist;
 
 	dist = DIST;
-	if(amount)
-		dist = dist * (1.0 + (double)get_rand() / ((double)UINT32_MAX * 200.0));
-	// static int tr = 0;
-	// if(tr != amount);
-	// {printf("DIST: %g, dist: %g map: %g -- %d\n", DIST, dist, ft_map(amount, 100, -100, 100), amount);tr = amount;}
-	rigth = ft_vectmult(d->cam.rigth, ft_map(x, W_WIDTH, -d->width, d->width));
+	dist = dist * (1.0 + (double)get_rand() / ((double)UINT32_MAX * 200.0));
+	right = ft_vectmult(d->cam.right, ft_map(x, W_WIDTH, -d->width, d->width));
+	if (amount)
+		right = ft_vectmult(right, 1.0 + get_rand() / 858993459000.0);
 	up = ft_vectmult(d->cam.up, ft_map(y, W_HEIGTH, -d->height, d->height));
-	return (ft_vectnorm(ft_vectadd(ft_vectmult(d->cam.vec, dist), ft_vectadd(up,
-					rigth))));
+	if (amount)
+		up = ft_vectmult(up, 1.0 + get_rand() / 858993459000.0);
+	return (ft_vectnorm(ft_vectadd(ft_vectmult(d->cam.vec, DIST), ft_vectadd(up,
+					right))));
 }
 
 uint32_t	get_col(uint32_t col, uint8_t *avg, int amount)
@@ -68,7 +68,8 @@ void	ft_loop_pixel(t_data *d, int am)
 			else
 				col = 255 - (255 * d->amb.amb_light);
 			if (am > 0)
-				col = get_col(col, &d->img->pixels[(y * d->img->width + x) * 4], am);
+				col = get_col(col, &d->img->pixels[(y * d->img->width + x) * 4],
+						am);
 			my_put_pixel(d->img, x, y, col);
 			x++;
 		}

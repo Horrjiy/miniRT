@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 13:45:29 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:19:00 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_vect rigth; // vector that faces right relative to screen
+	t_vect right; // vector that faces right relative to screen
 	t_vect up;    // vector that faces up relative to screen
 	t_coords pos; // position of the view point
 	t_coords vec; // normalized vector to the direction the camera is looking

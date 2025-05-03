@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 23:43:42 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:20:36 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ bool			ft_init(t_data *data);
 // checks for movement keys and sets vaues accordingly
 void			ft_keyfunc(void *param);
 
-// calculates a random number
-int				get_rand(void);
+// calculates a pseudo random number
+double			get_rand(void);
 
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);
