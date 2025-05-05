@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/03 10:20:36 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 12:23:18 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 // # define W_HEIGTH 900
 # define W_WIDTH 1280
 // # define W_WIDTH 640.0
-// # define W_WIDTH 320.0
+// # define W_WIDTH 320
 # define W_HEIGTH 720
 // # define W_HEIGTH 360.0
-// # define W_HEIGTH 180.0
+// # define W_HEIGTH 180
 # define V_WIDTH 2.0
 // # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
 # define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
@@ -87,7 +87,7 @@ bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 bool			ft_init(t_data *data);
 
 // checks for movement keys and sets vaues accordingly
-void			ft_keyfunc(void *param);
+void			ft_keyfunc(mlx_key_data_t keydata, void *param);
 
 // calculates a pseudo random number
 double			get_rand(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyfunc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:38:14 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/29 16:15:29 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:21:49 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,52 @@ t_vect	ft_movecam(t_vect pos, t_vect dir)
 	return (ft_vectadd(pos, ft_vectmult(ft_vectnorm(temp), MOVE_SPEED)));
 }
 
-void	ft_keyfunc(void *param)
+void	ft_keyfunc(mlx_key_data_t keydata, void *param)
 {
 	t_data	*d;
-	bool	change;
 
-	change = false;
 	d = (t_data *)param;
 	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, d->cam.vec);
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_S))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectmult(d->cam.vec, -1));
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectrot(d->cam.vec, PI_2, 'y'));
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
 	{
 		d->cam.pos = ft_movecam(d->cam.pos, ft_vectrot(d->cam.vec, -PI_2, 'y'));
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_UP))
 	{
 		d->cam.pos.y += MOVE_SPEED;
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_DOWN))
 	{
 		d->cam.pos.y -= MOVE_SPEED;
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_LEFT))
 	{
 		d->cam.vec = ft_vectrot(d->cam.vec, PI / 25, 'y');
-		change = 1;
+		d->start = 1;
 	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))
 	{
 		d->cam.vec = ft_vectrot(d->cam.vec, -PI / 25, 'y');
-		change = 1;
+		d->start = 1;
 	}
-	if (change)
-		ft_render(d);
+	esc(keydata, param);
 }
 
 void	esc(mlx_key_data_t keydata, void *param)

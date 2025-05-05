@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 15:42:07 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 12:12:55 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int argc, char *argv[])
 	ft_analyze(&data, fd);
 	if (!ft_init(&data))
 		return (ft_parserr(&data, ENOMEM), 12);
-	mlx_key_hook(data.mlx, esc, &data);
+	data.start = false;
+	mlx_key_hook(data.mlx, ft_keyfunc, &data);
 	mlx_loop_hook(data.mlx, ft_render, &data);
 	mlx_loop(data.mlx);
 	free_data(&data);

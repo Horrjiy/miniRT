@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/03 10:19:00 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 12:12:23 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,10 @@ typedef struct s_data
 	t_l light;         // a light source
 	int all_surrnd[3]; // tracks camera ambient and light
 	char *str;         // A string; still overcomplicated
-	char		**scene;
-	double width;  // projection plane height
-	double height; // projection plane width
+	char **scene;      //
+	double width;      // projection plane height
+	double height;     // projection plane width
+	bool start;        //
 }				t_data;
 
 #endif
