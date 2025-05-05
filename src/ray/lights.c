@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:23:01 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/03 00:01:10 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:33:36 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,29 @@ static void	clip_light(t_b_rgb *col)
 		col->b = 0;
 }
 
-// l_n = ft_v3_dotprod(light_dir, &rec->n);
-// ft_v3_init(&tmp, rec->n.x, rec->n.y, rec->n.z);
-// ft_v3_scalar_ip(&tmp, 2 * l_n);
-// ft_v3_sub_ip(&tmp, light_dir);
-// ft_v3_init(&rev_ray, rec->ray->dir->x, rec->ray->dir->y, rec->ray->dir->z);
-
 static t_b_rgb	phong_lighting(t_hit *hit, t_vect light_dir, t_data *d,
 		t_vect pixelv)
 {
 	t_b_rgb	light;
 	double	dot_p;
-	double	l_n;
-	t_vect	temp;
+	t_vect	r1;
 
 	dot_p = ft_vectdot(light_dir, hit->normal);
+	if (dot_p < 0)
+		return (hit->col);
 	light = ft_get_lightcolor(ft_rgbtod(d->light.rgb), d->light.bright * dot_p);
-	dot_p = ft_vectdot(light_dir, pixelv);
 	hit->col.r += light.r * hit->col.r;
 	hit->col.g += light.g * hit->col.g;
 	hit->col.b += light.b * hit->col.b;
 	clip_light(&hit->col);
-	l_n = ft_vectdot(light_dir, hit->normal);
-	temp = ft_vectmult(hit->normal, 2 * l_n);
-	temp = ft_vectsub(temp, light_dir);
-	dot_p = ft_vectdot(temp, ft_vectmult(pixelv, -1));
+	dot_p = ft_vectdot(light_dir, hit->normal);
+	r1 = ft_vectnorm(ft_vectsub(ft_vectmult(hit->normal, 2 * dot_p),
+				light_dir));
+	dot_p = ft_vectdot(r1, ft_vectmult(pixelv, -1));
+	if (dot_p < 0)
+		return (hit->col);
 	light = ft_get_lightcolor(ft_rgbtod(d->light.rgb), d->light.bright
-			* pow(dot_p, 5));
+			* pow(dot_p, 32));
 	hit->col.r += light.r;
 	hit->col.g += light.g;
 	hit->col.b += light.b;
@@ -88,7 +84,6 @@ uint32_t	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
 	hit->col.r *= amb_col.r;
 	hit->col.g *= amb_col.g;
 	hit->col.b *= amb_col.b;
-	clip_light(&hit->col);
 	if (ft_get_closest_hitpoint(ft_vectadd(hit->point, ft_vectmult(dir, 0.001)),
 			dir, d, &light_hit))
 		return (ft_rgba(ft_get_lightcolor(hit->col, d->amb.amb_light)));
