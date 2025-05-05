@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:53:06 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 14:03:19 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:32:28 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 double	ft_solve_quad_eq(double *abc)
 {
 	double	d;
-	double t1;
-	double t2;
+	double	t1;
+	double	t2;
 	double	sqrt_disc;
 
 	d = abc[1] * abc[1] - 4 * abc[0] * abc[2];
@@ -27,7 +27,7 @@ double	ft_solve_quad_eq(double *abc)
 		return (-1);
 	t1 = (-abc[1] - sqrt_disc) / (2 * abc[0]);
 	t2 = (-abc[1] + sqrt_disc) / (2 * abc[0]);
-	if(t1 < t2 && t1 > 0)
-		return(t1);
+	if (t1 < t2 && t1 > 0)
+		return (t1);
 	return (t2);
 }

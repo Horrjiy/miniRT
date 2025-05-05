@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:37:42 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 16:16:55 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:33:53 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	init_plane(t_data *data, char *line)
 	split_line(data, &line);
 	temp->plane.nvec = ft_convert_coords(data);
 	ft_vectnorm2(&(temp->plane.nvec));
-	if(isnan(temp->plane.nvec.x) || isnan(temp->plane.nvec.y) || isnan(temp->plane.nvec.z))
+	if (isnan(temp->plane.nvec.x) || isnan(temp->plane.nvec.y)
+		|| isnan(temp->plane.nvec.z))
 		ft_parserr(data, 206);
 	freen(&data->str);
 	split_line(data, &line);
@@ -61,7 +62,8 @@ void	init_cylinder(t_data *data, char *line)
 	split_line(data, &line);
 	temp->cylinder.vec = ft_convert_coords(data);
 	ft_vectnorm2(&(temp->cylinder.vec));
-	if(isnan(temp->cylinder.vec.x) || isnan(temp->cylinder.vec.y) || isnan(temp->cylinder.vec.z))
+	if (isnan(temp->cylinder.vec.x) || isnan(temp->cylinder.vec.y)
+		|| isnan(temp->cylinder.vec.z))
 		ft_parserr(data, 206);
 	freen(&data->str);
 	split_line(data, &line);
@@ -87,7 +89,8 @@ void	init_cone(t_data *data, char *line)
 	split_line(data, &line);
 	temp->cone.vec = ft_convert_coords(data);
 	ft_vectnorm2(&(temp->cone.vec));
-	if(isnan(temp->cone.vec.x) || isnan(temp->cone.vec.y) || isnan(temp->cone.vec.z))
+	if (isnan(temp->cone.vec.x) || isnan(temp->cone.vec.y)
+		|| isnan(temp->cone.vec.z))
 		ft_parserr(data, 206);
 	freen(&data->str);
 	split_line(data, &line);

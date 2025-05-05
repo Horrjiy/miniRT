@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:26:07 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 18:58:13 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:33:46 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 	double	min_dist;
 
 	bool (*g_intersects[shape_amount])(t_obj *, t_coords, t_vect,
-			t_hit *) = {&ft_sphere, &ft_plane, &ft_cylinder, &ft_cone};
+		t_hit *) = {&ft_sphere, &ft_plane, &ft_cylinder, &ft_cone};
 	min_dist = INFINITY;
 	obj = d->objects;
 	while (obj)

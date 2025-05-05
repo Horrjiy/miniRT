@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:57:14 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 19:01:58 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:34:00 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	split_line(t_data *data, char **line)
 	int	i;
 
 	i = 0;
-	if(**line == '\0')
+	if (**line == '\0')
 		return (ft_parserr(data, 207));
 	(*line)++;
-	if(ft_isalpha(**line))
+	if (ft_isalpha(**line))
 		(*line)++;
 	while (**line && ft_iswhtspc(**line))
 		(*line)++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:09:29 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 19:19:07 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:34:12 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ size_t	ft_comlen(const char *s)
 static bool	check_input(char *temp, int minus, int period, int comma)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!ft_isdigit(temp[i]) && temp[i++] != '-')
 		return (false);
-	if(!ft_isdigit(temp[ft_strlen(temp) - 1]))
+	if (!ft_isdigit(temp[ft_strlen(temp) - 1]))
 		return (false);
 	while (temp[i])
 	{
@@ -48,7 +48,7 @@ static bool	check_input(char *temp, int minus, int period, int comma)
 	}
 	if (minus < 0 || comma != 0 || period < 0)
 		return (false);
-	return(true);
+	return (true);
 }
 
 double	ft_convert_double(t_data *data)

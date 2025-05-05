@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/02 13:37:26 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:37:27 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 							ft_vectsub(p->point, obj->cylinder.pos))))));
 }
 
-static bool	check_hit(t_hit *point, t_hit temp, t_cy cy, bool hit)
+static bool	check_hit(t_hit *point, t_hit temp, t_cy cy)
 {
 	if (pow(ft_vectdist(temp.point, cy.pos), 2) <= pow(cy.h / 2, 2) + pow(cy.dia
-			/ 2, 2) && (!hit || temp.dist < point->dist))
+			/ 2, 2) && temp.dist < point->dist)
 	{
 		*point = temp;
 		return (true);
@@ -58,16 +58,19 @@ bool	ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 	t_hit	temp;
 	bool	hit;
 
+	point->dist = INFINITY;
 	hit = false;
 	pl.plane.nvec = obj->cylinder.vec;
-	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec, obj->cylinder.h / 2));
+	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec,
+				obj->cylinder.h / 2));
 	pl.plane.rgb = obj->cylinder.rgb;
 	if (ft_plane(&pl, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder, hit);
-	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec, -obj->cylinder.h / 2));
+		hit = check_hit(point, temp, obj->cylinder);
+	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec,
+				-obj->cylinder.h / 2));
 	if (ft_plane(&pl, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder, hit);
+		hit = check_hit(point, temp, obj->cylinder);
 	if (ft_inf_cylinder(obj, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder, hit);
+		hit = check_hit(point, temp, obj->cylinder);
 	return (hit);
 }
