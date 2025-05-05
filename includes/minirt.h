@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/05 16:46:59 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 18:44:15 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ bool			ft_plane(t_obj *obj, t_vect supv, t_vect dirv, t_hit *point);
 bool			ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
 bool			ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *point);
 bool			ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *point);
+
+void			set_hit_cone(t_hit *p, t_coords or, t_vect dir);
+void			set_hit_cylinder(t_hit *p, t_coords or, t_vect dir);
+void			set_hit_plane(t_hit *p, t_coords or, t_vect dir);
+void			set_hit_sphere(t_hit *p, t_coords or, t_vect dir);
+void			set_hit_triangle(t_hit *p, t_coords or, t_vect dir);
 
 // -------- light --------- //
 

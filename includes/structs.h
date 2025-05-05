@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:42:47 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 18:17:52 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_hitpoint
 	t_b_rgb col;    // the color of the object
 	t_coords point; // the intersection point
 	double dist;    // the distance between cam and object
+	t_status type;
 }				t_hit;
 
 typedef struct s_data
