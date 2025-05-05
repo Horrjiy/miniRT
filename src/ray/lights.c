@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:23:01 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 18:57:18 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:33:36 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,53 @@ static t_b_rgb	ft_get_lightcolor(t_b_rgb light, double brightness)
 	return (c);
 }
 
-static t_b_rgb	ft_mix_color(t_hit *hit, t_vect light_dir, t_data *d)
+static void	clip_light(t_b_rgb *col)
 {
-	t_b_rgb	light_col;
+	if (col->r > 1)
+		col->r = 1;
+	if (col->g > 1)
+		col->g = 1;
+	if (col->b > 1)
+		col->b = 1;
+	if (col->r < 0)
+		col->r = 0;
+	if (col->g < 0)
+		col->g = 0;
+	if (col->b < 0)
+		col->b = 0;
+}
+
+static t_b_rgb	phong_lighting(t_hit *hit, t_vect light_dir, t_data *d,
+		t_vect pixelv)
+{
+	t_b_rgb	light;
 	double	dot_p;
+	t_vect	r1;
 
 	dot_p = ft_vectdot(light_dir, hit->normal);
-	light_col = ft_get_lightcolor(ft_rgbtod(d->light.rgb), d->light.bright
-			* dot_p);
-	hit->col.r += light_col.r * hit->col.r;
-	hit->col.g += light_col.g * hit->col.g;
-	hit->col.b += light_col.b * hit->col.b;
-	if (hit->col.r > 1)
-		hit->col.r = 1;
-	if (hit->col.g > 1)
-		hit->col.g = 1;
-	if (hit->col.b > 1)
-		hit->col.b = 1;
+	if (dot_p < 0)
+		return (hit->col);
+	light = ft_get_lightcolor(ft_rgbtod(d->light.rgb), d->light.bright * dot_p);
+	hit->col.r += light.r * hit->col.r;
+	hit->col.g += light.g * hit->col.g;
+	hit->col.b += light.b * hit->col.b;
+	clip_light(&hit->col);
+	dot_p = ft_vectdot(light_dir, hit->normal);
+	r1 = ft_vectnorm(ft_vectsub(ft_vectmult(hit->normal, 2 * dot_p),
+				light_dir));
+	dot_p = ft_vectdot(r1, ft_vectmult(pixelv, -1));
+	if (dot_p < 0)
+		return (hit->col);
+	light = ft_get_lightcolor(ft_rgbtod(d->light.rgb), d->light.bright
+			* pow(dot_p, 32));
+	hit->col.r += light.r;
+	hit->col.g += light.g;
+	hit->col.b += light.b;
+	clip_light(&hit->col);
 	return (hit->col);
 }
 
-t_b_rgb	ft_lighting(t_hit *hit, t_data *d)
+uint32_t	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
 {
 	t_vect	dir;
 	t_hit	light_hit;
@@ -60,6 +86,6 @@ t_b_rgb	ft_lighting(t_hit *hit, t_data *d)
 	hit->col.b *= amb_col.b;
 	if (ft_get_closest_hitpoint(ft_vectadd(hit->point, ft_vectmult(dir, 0.001)),
 			dir, d, &light_hit))
-		return (ft_get_lightcolor(hit->col, d->amb.amb_light));
-	return (ft_mix_color(hit, dir, d));
+		return (ft_rgba(ft_get_lightcolor(hit->col, d->amb.amb_light)));
+	return (ft_rgba(phong_lighting(hit, dir, d, pixelv)));
 }

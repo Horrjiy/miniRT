@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.c                                               :+:      :+:    :+:   */
+/*   random.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:58:21 by tleister         ###   ########.fr       */
+/*   Created: 2025/05/02 23:14:38 by tleister          #+#    #+#             */
+/*   Updated: 2025/05/03 10:20:16 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	ft_render(void *param)
+uint32_t	xorshift32(uint32_t *state)
 {
-	static int	i = 0;
-	static bool	antialiasing = false;
-	t_data		*d;
+	*state ^= *state << 21;
+	*state ^= *state >> 28;
+	*state ^= *state << 4;
+	*state *= 1231238787231287;
+	return (*state);
+}
 
-	d = (t_data *)param;
-	if (mlx_is_key_down(d->mlx, MLX_KEY_SPACE))
-		antialiasing = !antialiasing;
-	ft_printf("\033[?25l");
-	if (d->start)
-		i = 0;
-	if (antialiasing || i == 0)
-	{
-		printf("\033[2K %d samples\n", i + 1);
-		ft_loop_pixel(d, i);
-		printf("\033[A");
-		i++;
-		d->start = 0;
-	}
+double	get_rand(void)
+{
+	static uint32_t	state = 0x61707865;
+
+	return ((double)xorshift32(&state));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:05:19 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 14:49:28 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:42:47 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
+	t_vect right; // vector that faces right relative to screen
+	t_vect up;    // vector that faces up relative to screen
 	t_coords pos; // position of the view point
 	t_coords vec; // normalized vector to the direction the camera is looking
 	double fov;   // Horizontal field of view
@@ -144,10 +146,11 @@ typedef struct s_data
 	t_a amb;           // the ambient light
 	t_l light;         // a light source
 	int all_surrnd[3]; // tracks camera ambient and light
-	char *str;         // A string
-	char **scene;
-	double width;  // projection plane height
-	double height; // projection plane width
+	char *str;         // A string; still overcomplicated
+	char **scene;      //
+	double width;      // projection plane height
+	double height;     // projection plane width
+	bool start;        //
 }				t_data;
 
 #endif

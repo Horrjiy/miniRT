@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   argconvert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:36:31 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 12:54:58 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:44:24 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-//Checks if the identifier is valid.
-//If valid, redirects to the identifier's function.
+// Checks if the identifier is valid.
+// If valid, redirects to the identifier's function.
 static void	init_identifier(t_data *data, char **scene, char *line, int i)
 {
 	while (scene[i])
@@ -37,6 +37,8 @@ static void	init_identifier(t_data *data, char **scene, char *line, int i)
 			init_cylinder(data, line);
 		else if (!ft_strncmp(line, "tr", 2) && ft_iswhtspc(line[2]))
 			init_triangle(data, line);
+		else if (!ft_strncmp(line, "co", 2) && ft_iswhtspc(line[2]))
+			init_cone(data, line);
 		else
 			ft_parserr(data, 202);
 		i++;

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:39:39 by tleister          #+#    #+#             */
-/*   Updated: 2025/04/30 18:44:51 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:43:05 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static void	ft_set_cam_vect(t_data *d)
+{
+	d->cam.up.x = 0;
+	d->cam.up.y = 1;
+	d->cam.up.z = 0;
+	d->cam.right = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.up));
+	d->cam.up = ft_vectnorm(ft_vectcross(d->cam.vec, d->cam.right));
+}
 
 bool	ft_init(t_data *data)
 {
@@ -29,5 +38,6 @@ bool	ft_init(t_data *data)
 	theta = data->cam.fov * PI / 180.0;
 	data->height = V_HEIGTH;
 	data->width = ratio * sin(theta / 2) / sin(PI_2 / 2) * data->height;
+	ft_set_cam_vect(data);
 	return (true);
 }

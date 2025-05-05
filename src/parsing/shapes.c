@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:37:42 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 18:56:16 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:44:54 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,33 @@ void	init_cylinder(t_data *data, char *line)
 	freen(&data->str);
 	split_line(data, &line);
 	temp->cylinder.rgb = ft_convert_rgb(data);
+	freen(&data->str);
+}
+
+void	init_cone(t_data *data, char *line)
+{
+	t_obj	*temp;
+
+	ft_node_addback(&(data->objects), init_object_node(cone, data));
+	temp = ft_lastnode(data->objects);
+	split_line(data, &line);
+	temp->cone.pos = ft_convert_coords(data);
+	freen(&data->str);
+	split_line(data, &line);
+	temp->cone.vec = ft_convert_coords(data);
+	ft_vectnorm2(&(temp->cone.vec));
+	if (isnan(temp->cone.vec.x) || isnan(temp->cone.vec.y)
+		|| isnan(temp->cone.vec.z))
+		ft_parserr(data, 206);
+	freen(&data->str);
+	split_line(data, &line);
+	temp->cone.dia = ft_convert_double(data);
+	freen(&data->str);
+	split_line(data, &line);
+	temp->cone.h = ft_convert_double(data);
+	freen(&data->str);
+	split_line(data, &line);
+	temp->cone.rgb = ft_convert_rgb(data);
 	freen(&data->str);
 }
 

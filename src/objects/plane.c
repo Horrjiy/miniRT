@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 12:12:07 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 11:26:11 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:44:08 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ bool	ft_plane(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
 	double	temp;
 
 	plane = obj->plane;
-	htp->obj = obj;
-	htp->normal = plane.nvec;
-	htp->col = ft_rgbtod(plane.rgb);
 	temp = ft_vectdot(dirv, plane.nvec);
 	if (temp == 0)
 		return (false);
-	t = -((ft_vectdot(ft_vectsub(supv, plane.pos), plane.nvec)) / temp);
-	htp->dist = t;
+	t = -(ft_vectdot(ft_vectsub(supv, plane.pos), plane.nvec) / temp);
 	if (t < 0)
 		return (false);
+	htp->dist = t;
+	htp->obj = obj;
+	htp->normal = plane.nvec;
+	if (ft_vectdot(plane.nvec, dirv) < 0)
+		htp->normal = ft_vectmult(plane.nvec, -1);
+	htp->col = ft_rgbtod(plane.rgb);
 	htp->point = ft_vectadd(supv, ft_vectmult(dirv, t));
 	return (true);
 }

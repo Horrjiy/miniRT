@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/30 19:39:59 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:46:59 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,21 @@
 // ~-~-~-~-~-~-~-~-~  macros  ~-~-~-~-~-~-~-~-~ //
 
 // # define W_WIDTH 1500
-// # define W_HEIGTH 900
+// # define W_HEIGHT 900
 // # define W_WIDTH 320
 // # define W_HEIGHT 180
 # define W_WIDTH 1280
+// # define W_WIDTH 640
+// # define W_WIDTH 320
 # define W_HEIGHT 720
+// # define W_HEIGHT 360
+// # define W_HEIGHT 180
 # define V_WIDTH 2.0
-// # define V_HEIGTH 3.333333333333333333333 //  W_HEIGTH / W_WIDTH * V_WIDTH
-# define V_HEIGTH 1.125 //  W_HEIGTH / W_WIDTH * V_WIDTH
+// # define V_HEIGTH 3.333333333333333333333 //  W_HEIGHT / W_WIDTH * V_WIDTH
+# define V_HEIGTH 1.125 //  W_HEIGHT / W_WIDTH * V_WIDTH
 
 # define MOVE_SPEED 0.5
-# define DIST 3
+# define DIST 3.0
 
 # define PI 3.14159265358979323846264338327950288
 # define PI_2 1.57079632679489661923132169163975144
@@ -60,6 +64,7 @@ void			init_sphere(t_data *data, char *line);
 void			init_plane(t_data *data, char *line);
 void			init_cylinder(t_data *data, char *line);
 void			init_triangle(t_data *data, char *line);
+void			init_cone(t_data *data, char *line);
 void			split_line(t_data *data, char **line);
 void			ft_node_addback(t_obj **head, t_obj *node);
 t_obj			*init_object_node(int type, t_data *data);
@@ -75,8 +80,11 @@ t_coords		ft_convert_coords(t_data *data);
 
 // ----- rendering ----- //
 
+// calls ft_loop_pixel more often for antialiasing
+void			ft_render(void *param);
+
 // goes througth all pixels of the window and sets them correctly
-void			ft_render(t_data *data);
+void			ft_loop_pixel(t_data *d, int amount);
 
 // gets the closest hit point of the line defined by origin and dir with any object
 bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
@@ -86,7 +94,10 @@ bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 bool			ft_init(t_data *data);
 
 // checks for movement keys and sets vaues accordingly
-void			ft_keyfunc(void *param);
+void			ft_keyfunc(mlx_key_data_t keydata, void *param);
+
+// calculates a pseudo random number
+double			get_rand(void);
 
 // closes the window if esc is pressed
 void			esc(mlx_key_data_t keydata, void *param);
@@ -108,7 +119,7 @@ t_b_rgb			ft_rgbtod(t_rgb col);
 uint32_t		ft_rgba(t_b_rgb col);
 
 // calculates the color for lit points
-t_b_rgb			ft_lighting(t_hit *hit, t_data *d);
+uint32_t		ft_lighting(t_hit *hit, t_data *d, t_vect cam_vect);
 
 // maps a number within a range into another range
 double			ft_map(int num, double oldmax, double newmin, double newmax);

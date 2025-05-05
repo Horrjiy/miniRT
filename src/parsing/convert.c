@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:09:29 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/04/29 19:43:49 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:44:29 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
