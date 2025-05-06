@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:43:52 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:41:07 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ bool	ft_cylinder(t_obj *obj, t_coords or, t_vect dir, t_hit *point)
 				obj->cylinder.h / 2));
 	pl.plane.rgb = obj->cylinder.rgb;
 	if (ft_plane(&pl, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder);
+		hit = check_hit(point, temp, obj->cylinder) || hit;
 	pl.plane.pos = ft_vectadd(obj->cylinder.pos, ft_vectmult(obj->cylinder.vec,
 				-obj->cylinder.h / 2));
 	if (ft_plane(&pl, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder);
+		hit = check_hit(point, temp, obj->cylinder) || hit;
 	if (ft_inf_cylinder(obj, or, dir, &temp))
-		hit = check_hit(point, temp, obj->cylinder);
+		hit = check_hit(point, temp, obj->cylinder) || hit;
 	return (hit);
 }

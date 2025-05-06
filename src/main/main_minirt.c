@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:10:16 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/05 12:12:55 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:11:13 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 	if (!ft_init(&data))
 		return (ft_parserr(&data, ENOMEM), 12);
 	data.start = false;
-	mlx_key_hook(data.mlx, ft_keyfunc, &data);
+	mlx_key_hook(data.mlx, esc, &data);
 	mlx_loop_hook(data.mlx, ft_render, &data);
 	mlx_loop(data.mlx);
 	free_data(&data);

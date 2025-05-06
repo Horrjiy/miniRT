@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:57:41 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/05 16:46:59 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:18:32 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,12 @@ void			ft_render(void *param);
 // goes througth all pixels of the window and sets them correctly
 void			ft_loop_pixel(t_data *d, int amount);
 
-// gets the closest hit point of the line defined by origin and dir with any object
+// gets the closest hit point of the line with any object
 bool			ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 					t_hit *closest);
 
 // initializes the data
 bool			ft_init(t_data *data);
-
-// checks for movement keys and sets vaues accordingly
-void			ft_keyfunc(mlx_key_data_t keydata, void *param);
 
 // calculates a pseudo random number
 double			get_rand(void);

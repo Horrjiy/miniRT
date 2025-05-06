@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hitpoint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:26:07 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:45:17 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:42:51 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-bool	ft_cone(t_obj *obj, t_coords or, t_vect dir, t_hit *closest)
-{
-	(void)obj;
-	(void) or ;
-	(void)dir;
-	(void)closest;
-	return (false);
-}
 
 bool	ft_get_closest_hitpoint(t_coords or, t_vect dir, t_data *d,
 		t_hit *closest)

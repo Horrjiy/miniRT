@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:56:55 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:56:34 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:07:44 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ uint32_t	getcol(uint32_t col, uint8_t *avg, int amount)
 
 static void	ft_progressbar(int x, int y)
 {
-	static int	all_pix = W_WIDTH * W_HEIGHT;
+	static int	all_pix;
 
+	all_pix = W_WIDTH * W_HEIGHT;
 	if (x != (W_WIDTH - 1))
 		return ;
 	printf("\x1b[2K");
@@ -81,8 +82,7 @@ void	ft_loop_pixel(t_data *d, int am)
 			else
 				col = 255 - (255 * d->amb.amb_light);
 			if (am > 0)
-				col = getcol(col, &d->img->pixels[(y * d->img->width + x) * 4],
-						am);
+				col = getcol(col, &d->img->pixels[(y * W_WIDTH + x) * 4], am);
 			ft_progressbar(x, y);
 			my_put_pixel(d->img, x, y, col);
 			x++;

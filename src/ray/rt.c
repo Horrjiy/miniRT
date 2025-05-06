@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:27:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:58:21 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:17:08 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,12 @@
 void	ft_render(void *param)
 {
 	static int	i = 0;
-	static bool	antialiasing = false;
 	t_data		*d;
 
 	d = (t_data *)param;
-	if (mlx_is_key_down(d->mlx, MLX_KEY_SPACE))
-		antialiasing = !antialiasing;
-	ft_printf("\033[?25l");
-	if (d->start)
-		i = 0;
-	if (antialiasing || i == 0)
+	if (i == 0)
 	{
-		printf("\033[2K %d samples\n", i + 1);
 		ft_loop_pixel(d, i);
-		printf("\033[A");
 		i++;
-		d->start = 0;
 	}
 }
