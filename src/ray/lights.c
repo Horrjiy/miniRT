@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:23:01 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/06 11:56:38 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:17:03 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-// Calculates the actual color of the light out of the color and brigthness
-static t_b_rgb	ft_get_lightcolor(t_b_rgb light, double brightness)
-{
-	t_b_rgb	c;
-
-	if (brightness > 1)
-		brightness = 1;
-	else if (brightness < 0)
-		brightness = 0;
-	c.r = light.r * brightness;
-	c.g = light.g * brightness;
-	c.b = light.b * brightness;
-	return (c);
-}
 
 static void	clip_light(t_b_rgb *col)
 {
@@ -56,10 +41,10 @@ static t_b_rgb	get_specular(t_hit *hit, t_vect light_dir, t_vect pixelv,
 	dot_p = ft_vectdot(r1, ft_vectmult(pixelv, -1));
 	if (dot_p < 0)
 		return (hit->col);
-	l = ft_get_lightcolor(ft_rgbtod(light.rgb), light.bright * pow(dot_p, 32));
-	hit->col.r += l.r;
-	hit->col.g += l.g;
-	hit->col.b += l.b;
+	l = ft_rgbtod(light.rgb);
+	hit->col.r += l.r * light.bright * pow(dot_p, 32);
+	hit->col.g += l.g * light.bright * pow(dot_p, 32);
+	hit->col.b += l.b * light.bright * pow(dot_p, 32);
 	clip_light(&hit->col);
 	return (hit->col);
 }
@@ -72,10 +57,10 @@ static t_b_rgb	get_diffuse(t_hit *hit, t_vect light_dir, t_l light)
 	dot_p = ft_vectdot(light_dir, hit->normal);
 	if (dot_p < 0)
 		dot_p = ft_vectdot(light_dir, ft_vectmult(hit->normal, -1));
-	l = ft_get_lightcolor(ft_rgbtod(light.rgb), light.bright * dot_p);
-	hit->col.r += l.r * hit->col.r;
-	hit->col.g += l.g * hit->col.g;
-	hit->col.b += l.b * hit->col.b;
+	l = ft_rgbtod(light.rgb);
+	hit->col.r += l.r * hit->col.r * light.bright * dot_p;
+	hit->col.g += l.g * hit->col.g * light.bright * dot_p;
+	hit->col.b += l.b * hit->col.b * light.bright * dot_p;
 	clip_light(&hit->col);
 	return (hit->col);
 }
@@ -84,10 +69,10 @@ static t_b_rgb	get_ambient(t_hit *hit, t_a amb)
 {
 	t_b_rgb	amb_col;
 
-	amb_col = ft_get_lightcolor(ft_rgbtod(amb.rgb), amb.amb_light);
-	hit->col.r *= amb_col.r;
-	hit->col.g *= amb_col.g;
-	hit->col.b *= amb_col.b;
+	amb_col = ft_rgbtod(amb.rgb);
+	hit->col.r *= amb_col.r * amb.amb_light;
+	hit->col.g *= amb_col.g * amb.amb_light;
+	hit->col.b *= amb_col.b * amb.amb_light;
 	clip_light(&hit->col);
 	return (hit->col);
 }
