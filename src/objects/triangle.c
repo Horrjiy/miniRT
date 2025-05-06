@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:27:00 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/02 11:22:24 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:51:32 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ bool	ft_triangle(t_obj *obj, t_vect supv, t_vect dirv, t_hit *htp)
 	htp->obj = obj;
 	htp->normal = ft_vectcross(ft_vectsub(trian.pt_b, trian.pt_a),
 			ft_vectsub(trian.pt_c, trian.pt_a));
+	if (ft_vectdot(htp->normal, dirv) < 0)
+		htp->normal = ft_vectmult(htp->normal, -1);
 	htp->col = ft_rgbtod(trian.rgb);
 	temp = ft_vectdot(dirv, htp->normal);
 	if (temp == 0)
