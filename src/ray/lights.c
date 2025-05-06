@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:23:01 by mpoplow           #+#    #+#             */
-/*   Updated: 2025/05/05 17:55:17 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:56:38 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static t_b_rgb	get_diffuse(t_hit *hit, t_vect light_dir, t_l light)
 
 	dot_p = ft_vectdot(light_dir, hit->normal);
 	if (dot_p < 0)
-		return (hit->col);
+		dot_p = ft_vectdot(light_dir, ft_vectmult(hit->normal, -1));
 	l = ft_get_lightcolor(ft_rgbtod(light.rgb), light.bright * dot_p);
 	hit->col.r += l.r * hit->col.r;
 	hit->col.g += l.g * hit->col.g;
@@ -104,6 +104,5 @@ uint32_t	ft_lighting(t_hit *hit, t_data *d, t_vect pixelv)
 		return (ft_rgba(hit->col));
 	get_diffuse(hit, dir, d->light);
 	get_specular(hit, dir, pixelv, d->light);
-	
 	return (ft_rgba(hit->col));
 }
