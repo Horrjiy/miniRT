@@ -6,7 +6,7 @@
 /*   By: tleister <tleister@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:17:15 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/05 16:34:36 by tleister         ###   ########.fr       */
+/*   Updated: 2025/05/05 19:42:33 by tleister         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 	p->col = ft_rgbtod(obj->cone.rgb);
 	p->obj = obj;
 	p->point = ft_vectadd(or, ft_vectmult(dir, p->dist));
-	tangential = ft_vectcross(obj->cone.vec, ft_vectsub(obj->cone.pos,
-				p->point));
 	tangential = ft_vectcross(obj->cone.vec, ft_vectsub(p->point,
 				obj->cone.pos));
 	p->normal = ft_vectcross(tangential, ft_vectsub(p->point, obj->cone.pos));

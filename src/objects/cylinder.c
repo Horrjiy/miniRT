@@ -6,7 +6,7 @@
 /*   By: mpoplow <mpoplow@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:06:02 by tleister          #+#    #+#             */
-/*   Updated: 2025/05/06 10:41:07 by mpoplow          ###   ########.fr       */
+/*   Updated: 2025/05/06 10:48:43 by mpoplow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	set_hit(t_hit *p, t_coords or, t_vect dir, t_obj *obj)
 	p->normal = ft_vectnorm(ft_vectsub(p->point, ft_vectadd(obj->cylinder.pos,
 					ft_vectmult(obj->cylinder.vec, ft_vectdot(obj->cylinder.vec,
 							ft_vectsub(p->point, obj->cylinder.pos))))));
+	if (ft_vectdot(p->normal, dir) < 0)
+		p->normal = ft_vectmult(p->normal, -1);
 }
 
 static bool	check_hit(t_hit *point, t_hit temp, t_cy cy)
